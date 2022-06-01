@@ -1,0 +1,42 @@
+.register-page {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding-top: 200px;
+}
+
+.register-page > form {
+  background-color: rgb(240 240 240);
+  box-shadow: 0 2px 2px 0 rgba(0 0 0 / 25%);
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0;
+  padding: 20px;
+}
+
+.register-page input {
+  font-family: inherit;
+  height: 40px;
+  margin-bottom: 10px;
+  padding: 0 10px;
+  width: 300px;
+}
+
+.register-page button {
+  background-color: rgb(90, 150, 90);
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1.1rem;
+  font-weight: bold;
+  height: 40px;
+  margin-top: 30px;
+  text-transform: uppercase;
+}
+
+.register-page button:disabled {
+  cursor:not-allowed;
+  opacity: 50%;
+}
