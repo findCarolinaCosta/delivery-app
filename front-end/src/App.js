@@ -6,7 +6,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route exact path="/" element={ <Login /> } />
+        <Route path="/login" element={ <Login /> } />
+        <Route exact path="/" element={ <Navigate to="/login" /> } />
       </Routes>
     </BrowserRouter>
   );
