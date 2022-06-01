@@ -21,7 +21,6 @@ function MainProvider({ children }) {
   );
 }
 
-
 MainProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };
