@@ -1,0 +1,46 @@
+/* Navbar */
+
+* {
+  margin: 0;
+  padding: 0;
+  color: #FFF;
+}
+
+header {
+  position: absolute;
+  width: 95vw;
+  height: 105px;
+  left: 0px;
+  top: 0px;
+  background-color: #036B52;
+}
+
+nav {
+  height: 100%;
+  display: flex;
+  align-items: baseline;
+  flex-direction: row;
+  justify-content: space-between;
+
+}
+
+.primary {
+  background-color: #036B52;
+  padding: 2rem;
+}
+
+.secondary {
+  background-color: #2FC18C;
+  padding: 2rem;
+}
+
+.tertiary {
+  padding: 2rem;
+  background-color: #421981;
+}
+
+.quaternary {
+  background-color: #056CF9;
+  padding: 2rem;
+  font-size: 1.3rem; 
+}
