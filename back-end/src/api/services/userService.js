@@ -12,7 +12,7 @@ const createToken = (name, email, id) => {
 
 const getUserByEmail = async (email) => User.findOne({ where: { email } });
 
-const validPassword = async (password, hashedPassword) => {
+const isValidPassword = async (password, hashedPassword) => {
   const hashPassword = md5(password);
   return hashPassword === hashedPassword;
 };
@@ -24,7 +24,7 @@ const login = async ({ email, password }) => {
 
   const { password: userPassword, id, name } = user;
 
-  if (!validPassword(password, userPassword)) {
+  if (!isValidPassword(password, userPassword)) {
     throw new Error("Senha incorreta");
   }
 

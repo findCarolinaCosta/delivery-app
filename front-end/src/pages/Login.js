@@ -1,5 +1,4 @@
-import React, { useContext } from 'react';
-import { MainContext } from '../context/MainProvider';
+import React  from 'react';
 
 function Login() {
   return (
