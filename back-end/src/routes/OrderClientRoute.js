@@ -1,5 +1,5 @@
 const express = require('express');
-const { getByClientId } = require('../controller/OrderClientController');
+const { getByClientId } = require('../controllers/OrderClientController');
 
 const routeOrderClient = express.Router();
 
