@@ -2,7 +2,7 @@ const { Sale } = require('../database/models');
 
 const getAll = () => Sale.findAll();
 
-// lint chorando camel case
+/* eslint-disable camelcase */
 const getByClientId = (user_id) => Sale.findOne({ where: { user_id } });
 
 module.exports = {
