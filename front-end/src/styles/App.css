@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap') ;
 
 * {
   box-sizing: border-box;
@@ -8,6 +8,6 @@
 
 body {
   background-image: linear-gradient(to bottom, rgb(240 240 240), rgb(210 210 210));
-  font-family: 'Poppins', sans-serif;
+  font-family: Poppins , sans-serif;
   min-height: 100vh;
 }
