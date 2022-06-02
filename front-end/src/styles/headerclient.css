@@ -1,0 +1,41 @@
+* {
+  color: white;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #036b52;
+  height: 105px;
+  position: absolute;
+  width: 95vw;
+}
+
+nav {
+  align-items: baseline;
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  justify-content: space-between;
+}
+
+.primary {
+  background-color: #036b52;
+  padding: 2rem;
+}
+
+.secondary {
+  background-color: #2fc18c;
+  padding: 2rem;
+}
+
+.tertiary {
+  background-color: #421981;
+  padding: 2rem;
+}
+
+.quaternary {
+  background-color: #056cf9;
+  font-size: 1.3rem;
+  padding: 2rem;
+}

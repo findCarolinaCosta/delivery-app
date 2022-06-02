@@ -5,10 +5,13 @@ export const MainContext = createContext();
 
 function MainProvider({ children }) {
   const [teste, setTeste] = useState('teste123');
+  const [clientName, setClientName] = useState('Nome do Cliente');
 
   const shared = {
     teste,
     setTeste,
+    clientName,
+    setClientName,
   };
 
   return (
