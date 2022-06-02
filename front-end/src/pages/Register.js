@@ -1,15 +1,21 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { registerUser } from '../api';
+import statusCodes from '../utils/statusCodes';
 import '../styles/Register.css';
 
 function Register() {
   const [input, setInput] = useState({ name: '', email: '', password: '' });
   const [inputValidation, setInputValidation] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [message, setMessage] = useState('');
+  const navigate = useNavigate();
 
   const checkValidation = useCallback(() => {
+    const { name, email, password } = input;
+    const re = /\S+@\S+\.\S+/;
     const MIN_NAME_LENGTH = 12;
     const MIN_PASSWORD_LENGTH = 6;
-    const re = /\S+@\S+\.\S+/;
-    const { name, email, password } = input;
 
     if (
       re.test(email)
@@ -26,13 +32,27 @@ function Register() {
     setInput((prevState) => ({ ...prevState, [name]: value }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(input);
+    setIsLoading(true);
+    const { name, email, password } = input;
+    const registerResult = await registerUser(name, email, password);
+
+    if (registerResult.status === statusCodes.CREATED) {
+      navigate('/customer/products');
+    } else {
+      setMessage(registerResult.data.message);
+    }
+    setIsLoading(false);
   };
 
   useEffect(() => {
-    checkValidation();
+    let control = true;
+    if (control) checkValidation();
+
+    return () => {
+      control = false;
+    };
   }, [checkValidation]);
 
   return (
@@ -77,12 +97,12 @@ function Register() {
           disabled={ !inputValidation }
           data-testid="common_register__button-register"
         >
-          Cadastrar
+          {isLoading ? <div className="loader" /> : <span>Cadastrar</span>}
         </button>
       </form>
-      <p data-testid="common_register__element-invalid_register">
-        Mensagem de erro
-      </p>
+      {message && (
+        <p data-testid="common_register__element-invalid_register">{message}</p>
+      )}
     </main>
   );
 }
