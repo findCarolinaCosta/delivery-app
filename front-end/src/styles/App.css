@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap") ;
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap') ;
 
 * {
   box-sizing: border-box;
@@ -7,15 +7,17 @@
 }
 
 body {
-  /* Custom properties */
-  --light-gray: rgb(240 240 240);
-  --light-gray2: rgb(210 210 210);
-  --green: rgb(90 150 90);
-  --box-shadow: 0 2px 2px 0 rgba(0 0 0 / 25%);
 
+  --light-gray: rgb(240 240 240);
+
+  --light-gray2: rgb(210 210 210);
+
+  --green: rgb(90 150 90);
+
+  --box-shadow: 0 2px 2px 0 rgba(0 0 0 / 25%);
   background-image: linear-gradient(
-    to bottom,
-    var(--light-gray),
+    to bottom ,
+    var(--light-gray) ,
     var(--light-gray2)
   );
   font-family: Poppins , sans-serif;
