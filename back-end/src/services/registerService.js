@@ -15,7 +15,7 @@ const verifyUser = async (name, email) => {
 const create = async (name, email, password) => {
   const hash = md5(password);
   await verifyUser(name, email);
-  const result = User.create({ name, email, password: hash, role: 'customer' });
+  const result = await User.create({ name, email, password: hash, role: 'customer' });
   return result;
 };
 
