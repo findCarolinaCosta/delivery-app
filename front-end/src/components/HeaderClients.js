@@ -7,42 +7,40 @@ function HeaderClients() {
   return (
     <header>
       <nav>
-        <div>
-          <h1
-            className="primary"
-            data-testid="customer_products__element-navbar-link-products"
-          >
-            PRODUTOS
+        <section className="flex">
+          <div className="primary">
+            <h1
+              data-testid="customer_products__element-navbar-link-products"
+            >
+              PRODUTOS
+            </h1>
+          </div>
+          <div className="secondary">
+            <h1
+              data-testid="customer_products__element-navbar-link-orders"
+            >
+              MEUS PEDIDOS
+            </h1>
+          </div>
+        </section>
+        <section className="flex">
+          <div className="tertiary">
+            <h1
+              data-testid="customer_products__element-navbar-user-full-name"
+            >
+              {clientName}
 
-          </h1>
-        </div>
-        <div>
-          <h1
-            className="secondary"
-            data-testid="customer_products__element-navbar-link-orders"
-          >
-            MEUS PEDIDOS
-
-          </h1>
-        </div>
-        <div>
-          <h1
-            className="tertiary"
-            data-testid="customer_products__element-navbar-user-full-name"
-          >
-            {clientName}
-
-          </h1>
-        </div>
-        <div>
-          <button
-            type="reset"
-            className="quaternary"
-            data-testid="customer_products__element-navbar-link-logout"
-          >
-            Sair
-          </button>
-        </div>
+            </h1>
+          </div>
+          <div className="quaternary">
+            <button
+              type="reset"
+              data-testid="customer_products__element-navbar-link-logout"
+            >
+              Sair
+            </button>
+          </div>
+        </section>
       </nav>
     </header>
   );
