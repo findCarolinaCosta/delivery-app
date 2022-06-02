@@ -1,15 +1,12 @@
-/* Navbar */
-
 * {
-  color: #FFF;
+  color: white;
   margin: 0;
   padding: 0;
 }
 
 header {
-  background-color: #036B52;
+  background-color: #036b52;
   height: 105px;
-  left: 0px;
   position: absolute;
   top: 0px;
   width: 95vw;
@@ -24,12 +21,12 @@ nav {
 }
 
 .primary {
-  background-color: #036B52;
+  background-color: #036b52;
   padding: 2rem;
 }
 
 .secondary {
-  background-color: #2FC18C;
+  background-color: #2Fc18c;
   padding: 2rem;
 }
 
@@ -39,7 +36,7 @@ nav {
 }
 
 .quaternary {
-  background-color: #056CF9;
+  background-color: #056cF9;
   font-size: 1.3rem; 
   padding: 2rem;
 }
