@@ -12,11 +12,11 @@ const login = async (email, password) => {
     throw new Error('Senha inválida');
   }
 
-  const { name, role } = result;
+  const { id, name, role } = result;
   const jwtData = { name, email, role };
   const token = createToken(jwtData);
 
-  return { name, email, role, token };
+  return { id, name, email, role, token };
 };
 
 module.exports = { login };
