@@ -28,8 +28,8 @@ header h4 {
 }
 
 .nav-link {
-  display: inline-block;
   color: white;
+  display: inline-block;
   font-weight: 700;
   line-height: 60px;
   padding: 0 40px;

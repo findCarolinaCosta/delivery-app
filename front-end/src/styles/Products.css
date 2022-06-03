@@ -3,14 +3,14 @@
   flex-wrap: wrap;
   justify-content: center;
   list-style: none;
-  padding: 100px 10% 100px;
+  padding: 100px 10%;
 }
 
 .checkout-button {
   background-color: var(--green);
   border-radius: 10px;
-  box-shadow: var(--box-shadow);
   bottom: 100px;
+  box-shadow: var(--box-shadow);
   color: white;
   font-size: 1.25rem;
   min-width: 300px;
