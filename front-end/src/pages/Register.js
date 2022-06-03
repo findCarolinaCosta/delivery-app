@@ -1,10 +1,12 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { registerUser } from '../api';
+import { UserContext } from '../context/UserProvider';
+import { login, registerUser } from '../api';
 import statusCodes from '../utils/statusCodes';
 import '../styles/Register.css';
 
 function Register() {
+  const { setUser } = useContext(UserContext);
   const [input, setInput] = useState({ name: '', email: '', password: '' });
   const [inputValidation, setInputValidation] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -39,6 +41,9 @@ function Register() {
     const registerResult = await registerUser(name, email, password);
 
     if (registerResult.status === statusCodes.CREATED) {
+      const loginResult = await login(email, password);
+      setUser(loginResult.data);
+      localStorage.setItem('user', JSON.stringify(loginResult.data));
       navigate('/customer/products');
     } else {
       setMessage(registerResult.data.message);
