@@ -1,12 +1,8 @@
-import React, { useContext } from 'react';
-import { MainContext } from '../context/MainProvider';
+import React from 'react';
 
 function Login() {
-  const { teste } = useContext(MainContext);
-
   return (
     <main>
-      <h1>{teste}</h1>
       <p>wololo</p>
     </main>
   );
