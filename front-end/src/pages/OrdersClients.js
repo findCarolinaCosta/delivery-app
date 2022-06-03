@@ -1,20 +1,20 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { genericApiResquest } from '../api';
 import HeaderClients from '../components/HeaderClients';
-import { MainContext } from '../context/MainProvider';
+import { UserContext } from '../context/UserProvider';
 
 const bgStatus = {
   pending: 'bg-[#d3c63c]', preparing: 'bg-[#87d53c]', delivered: 'bg-[#3bd5b0]' };
 
 function OrdersClients() {
   const [orders, setOrders] = useState([]);
-  const { userId } = useContext(MainContext);
+  const { user } = useContext(UserContext);
 
   useEffect(() => {
-    genericApiResquest.get(`orders/clients/${userId}`).then((response) => {
+    genericApiResquest.get(`orders/clients/${user.id}`).then((response) => {
       setOrders(response.data);
     });
-  }, [orders, userId]);
+  }, [user.id]);
 
   return (
     <div className="bg-[#fff] h-screen">
