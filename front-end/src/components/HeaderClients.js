@@ -1,46 +1,48 @@
 import React, { useContext } from 'react';
-import { MainContext } from '../context/MainProvider';
+import { UserContext } from '../context/UserProvider';
 import '../styles/headerclient.css';
 
 function HeaderClients() {
-  const { clientName } = useContext(MainContext);
+  const { user } = useContext(UserContext);
   return (
     <header>
       <nav>
-        <section className="flex">
-          <div className="primary">
-            <h1
-              data-testid="customer_products__element-navbar-link-products"
-            >
-              PRODUTOS
-            </h1>
-          </div>
-          <div className="secondary">
-            <h1
-              data-testid="customer_products__element-navbar-link-orders"
-            >
-              MEUS PEDIDOS
-            </h1>
-          </div>
-        </section>
-        <section className="flex">
-          <div className="tertiary">
-            <h1
-              data-testid="customer_products__element-navbar-user-full-name"
-            >
-              {clientName}
+        <div>
+          <h1
+            className="primary"
+            data-testid="customer_products__element-navbar-link-products"
+          >
+            PRODUTOS
 
-            </h1>
-          </div>
-          <div className="quaternary">
-            <button
-              type="reset"
-              data-testid="customer_products__element-navbar-link-logout"
-            >
-              Sair
-            </button>
-          </div>
-        </section>
+          </h1>
+        </div>
+        <div>
+          <h1
+            className="secondary"
+            data-testid="customer_products__element-navbar-link-orders"
+          >
+            MEUS PEDIDOS
+
+          </h1>
+        </div>
+        <div>
+          <h1
+            className="tertiary"
+            data-testid="customer_products__element-navbar-user-full-name"
+          >
+            {user.name}
+
+          </h1>
+        </div>
+        <div>
+          <button
+            type="reset"
+            className="quaternary"
+            data-testid="customer_products__element-navbar-link-logout"
+          >
+            Sair
+          </button>
+        </div>
       </nav>
     </header>
   );
