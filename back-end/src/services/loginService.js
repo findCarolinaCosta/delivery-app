@@ -3,23 +3,20 @@ const { User } = require('../database/models');
 const { createToken } = require('../utils');
 
 const login = async (email, password) => {
-  const response = await User.findOne({ where: { email } });
-  if (!response) {
+  const result = await User.findOne({ where: { email } });
+  if (!result) {
     throw new Error('Usuário não encontrado');
   }
-  console.log(response.password, md5(password));
-  if (response.password !== md5(password)) {    
+  console.log(result.password, md5(password));
+  if (result.password !== md5(password)) {    
     throw new Error('Senha inválida');
   }
 
-  const jwtData = {
-    email: response.email,
-    role: response.role,
-  }
+  const { name, role } = result;
+  const jwtData = { name, email, role };
+  const token = createToken(jwtData);
 
-  const token = createToken(jwtData)
-
-  return token;
+  return { name, email, role, token };
 };
 
 module.exports = { login };
