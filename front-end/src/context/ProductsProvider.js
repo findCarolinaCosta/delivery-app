@@ -4,15 +4,12 @@ import { fetchProducts } from '../api';
 
 export const ProductsContext = createContext();
 
-function MainProvider({ children }) {
+function ProductsProvider({ children }) {
   const localCart = JSON.parse(localStorage.getItem('cart'));
   const [products, setProducts] = useState([]);
-  const [totalPrice, setTotalPrice] = useState(localCart ? localCart.totalPrice : 0);
-
-  const createCart = () => {
-    const cart = { items: [], totalPrice: 0 };
-    localStorage.setItem('cart', JSON.stringify(cart));
-  };
+  const [totalPrice, setTotalPrice] = useState(
+    localCart ? localCart.totalPrice : 0,
+  );
 
   const getProducts = async () => {
     const { data } = await fetchProducts();
@@ -20,9 +17,8 @@ function MainProvider({ children }) {
   };
 
   useEffect(() => {
-    if (!localCart) createCart();
     getProducts();
-  }, [localCart]);
+  }, []);
 
   const shared = {
     products,
@@ -38,8 +34,8 @@ function MainProvider({ children }) {
   );
 }
 
-MainProvider.propTypes = {
+ProductsProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export default MainProvider;
+export default ProductsProvider;

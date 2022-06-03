@@ -5,7 +5,7 @@ import '../styles/ProductCard.css';
 
 function ProductCard({ id, name, price, urlImage }) {
   const localCart = JSON.parse(localStorage.getItem('cart'));
-  const localItem = localCart.items.find((item) => item.name === name);
+  const localItem = localCart?.items.find((item) => item.name === name);
   const { setTotalPrice } = useContext(ProductsContext);
   const [quantity, setQuantity] = useState(localItem ? localItem.quantity : 0);
 
@@ -21,7 +21,10 @@ function ProductCard({ id, name, price, urlImage }) {
   useEffect(() => {
     // Update cart in local storage
     const MINUS_ONE = -1;
-    const updatedCart = JSON.parse(localStorage.getItem('cart'));
+    const updatedCart = JSON.parse(localStorage.getItem('cart')) || {
+      items: [],
+      totalPrice: 0,
+    };
     const index = updatedCart.items.findIndex((item) => item.name === name);
 
     if (index !== MINUS_ONE) {

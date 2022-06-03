@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
+import { UserContext } from '../context/UserProvider';
 import '../styles/Header.css';
 
 function Header() {
+  const { user } = useContext(UserContext);
   const navigate = useNavigate();
 
   return (
@@ -25,13 +27,14 @@ function Header() {
       </nav>
       <div>
         <h4 data-testid="customer_products__element-navbar-user-full-name">
-          Nome do Cliente
+          {user.name}
         </h4>
         <button
           type="button"
           className="logout-button"
           onClick={ () => {
             navigate('/login');
+            localStorage.removeItem('user');
             localStorage.removeItem('cart');
           } }
           data-testid="customer_products__element-navbar-link-logout"
