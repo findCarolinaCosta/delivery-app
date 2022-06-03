@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
-import { MainContext } from '../context/MainProvider';
+import { UserContext } from '../context/UserProvider';
 import '../styles/headerclient.css';
 
 function HeaderClients() {
-  const { clientName } = useContext(MainContext);
+  const { user } = useContext(UserContext);
   return (
     <header>
       <nav>
@@ -30,7 +30,7 @@ function HeaderClients() {
             className="tertiary"
             data-testid="customer_products__element-navbar-user-full-name"
           >
-            {clientName}
+            {user.name}
 
           </h1>
         </div>

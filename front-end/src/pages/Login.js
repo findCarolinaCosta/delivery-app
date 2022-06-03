@@ -1,10 +1,12 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../context/UserProvider';
 import { login } from '../api';
 import statusCodes from '../utils/statusCodes';
 import '../styles/Register.css';
 
 function Login() {
+  const { setUser } = useContext(UserContext);
   const [input, setInput] = useState({ email: '', password: '' });
   const [inputValidation, setInputValidation] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -34,6 +36,7 @@ function Login() {
     const loginResult = await login(email, password);
 
     if (loginResult.status === statusCodes.OK) {
+      setUser(loginResult.data);
       navigate('/customer/products');
     } else {
       setMessage(loginResult.data.message);
