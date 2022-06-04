@@ -38,7 +38,7 @@ function OrdersClients() {
               >
                 <h3>Pedido</h3>
                 <p
-                  data-testid="customer_orders__element-order-id-"
+                  data-testid={ `customer_orders__element-order-id-${order.id}` }
                 >
                   {order.deliveryNumber}
                 </p>
@@ -51,7 +51,7 @@ function OrdersClients() {
               ${order.status === 'ENTREGUE' && bgStatus.delivered}` }
               >
                 <h1
-                  data-testid="customer_orders__element-delivery-status-"
+                  data-testid={ `customer_orders__element-delivery-status-${order.id}` }
                 >
                   {order.status}
                 </h1>
@@ -60,7 +60,7 @@ function OrdersClients() {
                 <h2
                   className="bg-[#f0fbf9] mt-auto mb-auto mr-6 ml-6 h-[40px] w-[140px]
               rounded-[10px] font-bold text-[22px] text-center p-1"
-                  data-testid="customer_orders__element-order-date-"
+                  data-testid={ `customer_orders__element-order-date-${order.id}` }
                 >
                   {order.saleDate}
                 </h2>
