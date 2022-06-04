@@ -33,7 +33,11 @@ function OrdersClients() {
                 leading-[28.13px]"
             >
               <h3>Pedido</h3>
-              <p>{order.deliveryNumber}</p>
+              <p
+                data-testid="customer_orders__element-order-id-"
+              >
+                {order.deliveryNumber}
+              </p>
             </div>
             <div
               className={ `bg-[#d3c63c] h-[105px] flex items-center w-[230px] 
@@ -42,12 +46,17 @@ function OrdersClients() {
               ${order.status === 'PREPARANDO' && bgStatus.preparing} 
               ${order.status === 'ENTREGUE' && bgStatus.delivered}` }
             >
-              <h1>{order.status}</h1>
+              <h1
+                data-testid="customer_orders__element-delivery-status-"
+              >
+                {order.status}
+              </h1>
             </div>
             <div className="flex flex-col gap-2 h-[105px] items-center justify-center">
               <h2
                 className="bg-[#f0fbf9] mt-auto mb-auto mr-6 ml-6 h-[40px] w-[140px]
               rounded-[10px] font-bold text-[22px] text-center p-1"
+                data-testid="customer_orders__element-order-date-"
               >
                 {order.saleDate}
               </h2>
