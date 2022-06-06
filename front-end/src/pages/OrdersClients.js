@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { genericApiResquest } from '../api';
-import HeaderClients from '../components/HeaderClients';
+import Header from '../components/Header';
 import { UserContext } from '../context/UserProvider';
 
 const bgStatus = {
@@ -20,7 +20,7 @@ function OrdersClients() {
 
   return (
     <div className="bg-[#fff] h-screen">
-      <HeaderClients />
+      <Header />
       <div className="grid grid-flow-row grid-cols-2 h-full w-full">
         {orders.map((order, index) => (
           <section key={ order.id }>
