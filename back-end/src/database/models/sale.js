@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
       status: DataTypes.STRING(50),
     },
     {
-      tableName: "Sales",
+      tableName: "sales",
       underscored: true,
       timestamps: false,
     }

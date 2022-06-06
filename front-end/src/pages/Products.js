@@ -29,12 +29,14 @@ function CustomerProducts() {
       <button
         type="button"
         className="checkout-button"
-        onClick={ () => {
-          if (totalPrice > 0) navigate('/customer/checkout');
-        } }
-        data-testid="customer_products__checkout-bottom-value"
+        onClick={ () => navigate('/customer/checkout') }
+        disabled={ totalPrice === 0 }
+        data-testid="customer_products__button-cart"
       >
-        {`Ver carrinho: R$${totalPrice.toFixed(2)}`}
+        Ver carrinho: R$
+        <span data-testid="customer_products__checkout-bottom-value">
+          {totalPrice.toFixed(2).replace('.', ',')}
+        </span>
       </button>
     </main>
   );
