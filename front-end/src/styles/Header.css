@@ -1,0 +1,41 @@
+header {
+  background-color: #036b52;
+  box-shadow: var(--box-shadow);
+  color: white;
+  display: flex;
+  height: 60px;
+  justify-content: space-between;
+  position: fixed;
+  width: 100%;
+  z-index: 10;
+}
+
+header > div {
+  display: flex;
+}
+
+header h4 {
+  align-items: center;
+  background-color: #421981;
+  display: flex;
+  padding: 0 40px;
+}
+
+.logout-button {
+  background-color: #056cf9;
+  font-size: 1.1rem;
+  width: 200px;
+}
+
+.nav-link {
+  color: white;
+  display: inline-block;
+  font-weight: 700;
+  line-height: 60px;
+  padding: 0 40px;
+  text-decoration: none;
+}
+
+.nav-link.active {
+  background-color: #2fc18c;
+}

@@ -25,9 +25,9 @@ export const registerUser = async (name, email, password) => {
   }
 };
 
-export const getExample = async () => {
+export const fetchProducts = async () => {
   try {
-    const result = await axios('/rota');
+    const result = await axios('/products');
     return result;
   } catch (error) {
     return error.response;

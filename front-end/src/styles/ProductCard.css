@@ -1,0 +1,89 @@
+.product-card {
+  box-shadow: var(--box-shadow);
+  margin: 40px 10px;
+  position: relative;
+  width: fit-content;
+}
+
+.product-price {
+  background-color: var(--light-gray);
+  font-size: 1.25rem;
+  font-weight: 700;
+  left: 10px;
+  padding: 5px;
+  position: absolute;
+  top: 10px;
+}
+
+.product-image-container {
+  align-items: center;
+  background-color: white;
+  display: flex;
+  height: 250px;
+  justify-content: center;
+  width: 250px;
+}
+
+.product-image-container > img {
+  height: 120px;
+}
+
+.product-name-container {
+  align-items: center;
+  background-color: var(--light-gray);
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+}
+
+.product-control {
+  display: flex;
+  margin-top: 10px;
+}
+
+.product-control > button {
+  background-color: var(--green);
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 700;
+  height: 40px;
+  width: 40px;
+}
+
+.product-control > button:first-of-type {
+  border-bottom-left-radius: 50%;
+  border-top-left-radius: 50%;
+}
+
+.product-control > button:last-of-type {
+  border-bottom-right-radius: 50%;
+  border-top-right-radius: 50%;
+}
+
+.product-control > input {
+  border: 1px solid var(--green);
+  font-family: inherit;
+  font-size: 1.1rem;
+  height: 40px;
+  text-align: center;
+  width: 40px;
+}
+
+/* Comenta tudo antes de subir pro github */
+
+/* Hide Arrows From Input Number */
+
+/* https://www.w3schools.com/howto/howto_css_hide_arrow_number.asp */
+
+/* Chrome, Safari, Edge, Opera */
+
+/* .product-control > input::-webkit-outer-spin-button,
+.product-control > input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+} */
+
+/* Firefox */
+
+/* .product-control > input[type="number"] {
+  -moz-appearance: textfield;
+} */

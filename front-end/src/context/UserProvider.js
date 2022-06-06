@@ -1,19 +1,16 @@
-import React, { createContext, useEffect, useState } from 'react';
+import React, { createContext, useState } from 'react';
 import PropTypes from 'prop-types';
 
 export const UserContext = createContext();
 
-function MainProvider({ children }) {
-  const [user, setUser] = useState({});
+function UserProvider({ children }) {
+  const localUser = JSON.parse(localStorage.getItem('user'));
+  const [user, setUser] = useState(localUser || {});
 
   const shared = {
     user,
     setUser,
   };
-
-  useEffect(() => {
-    localStorage.setItem('user', JSON.stringify(user));
-  }, [user]);
 
   return (
     <UserContext.Provider value={ { ...shared } }>
@@ -22,8 +19,8 @@ function MainProvider({ children }) {
   );
 }
 
-MainProvider.propTypes = {
+UserProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export default MainProvider;
+export default UserProvider;

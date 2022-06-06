@@ -7,7 +7,6 @@ const login = async (email, password) => {
   if (!result) {
     throw new Error('Usuário não encontrado');
   }
-  console.log(result.password, md5(password));
   if (result.password !== md5(password)) {    
     throw new Error('Senha inválida');
   }

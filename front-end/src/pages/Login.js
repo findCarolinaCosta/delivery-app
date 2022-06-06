@@ -37,6 +37,7 @@ function Login() {
 
     if (loginResult.status === statusCodes.OK) {
       setUser(loginResult.data);
+      localStorage.setItem('user', JSON.stringify(loginResult.data));
       navigate('/customer/products');
     } else {
       setMessage(loginResult.data.message);

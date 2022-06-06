@@ -1,10 +1,10 @@
 import React from 'react';
-import HeaderClients from '../components/HeaderClients';
+import Header from '../components/Header';
 
 function OrdersClients() {
   return (
     <div>
-      <HeaderClients />
+      <Header />
       <div>
         <h3>Pedido</h3>
         <p>00001</p>

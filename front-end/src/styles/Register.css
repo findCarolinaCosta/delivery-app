@@ -24,11 +24,8 @@
 
 .register-page button {
   background-color: var(--green);
-  border: none;
   border-radius: 5px;
   color: white;
-  cursor: pointer;
-  font-family: inherit;
   font-size: 1.1rem;
   font-weight: 700;
   height: 40px;
