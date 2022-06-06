@@ -19,6 +19,7 @@ function ProductCard({ id, name, price, urlImage }) {
   });
 
   useEffect(() => {
+    console.log(price.replace('.', ','));
     // Update cart in local storage
     const MINUS_ONE = -1;
     const updatedCart = JSON.parse(localStorage.getItem('cart')) || {
@@ -46,11 +47,11 @@ function ProductCard({ id, name, price, urlImage }) {
 
   return (
     <li className="product-card">
-      <span
-        className="product-price"
-        data-testid={ `customer_products__element-card-price-${id}` }
-      >
-        {`R$${price}`}
+      <span className="product-price">
+        R$
+        <span data-testid={ `customer_products__element-card-price-${id}` }>
+          {price.replace('.', ',')}
+        </span>
       </span>
       <div className="product-image-container">
         <img

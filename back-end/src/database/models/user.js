@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
       role: DataTypes.STRING,
     },
     {
-      tableName: 'Users',
+      tableName: 'users',
       underscored: true,
       timestamps: false,
     }
