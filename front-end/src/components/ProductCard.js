@@ -9,9 +9,9 @@ function ProductCard({ id, name, price, urlImage }) {
   const { setTotalPrice } = useContext(ProductsContext);
   const [quantity, setQuantity] = useState(localItem ? localItem.quantity : 0);
 
-  const addItem = () => setQuantity((prevState) => prevState + 1);
+  const addItem = () => setQuantity(quantity + 1);
 
-  const handleChange = ({ target: { value } }) => setQuantity(value);
+  const handleChange = (e) => setQuantity(e.target.value);
 
   const removeItem = () => setQuantity((prevState) => {
     if (prevState > 0) return prevState - 1;
@@ -75,7 +75,7 @@ function ProductCard({ id, name, price, urlImage }) {
           <input
             type="number"
             value={ quantity }
-            min={ 0 }
+            // min={ 0 }
             onChange={ handleChange }
             data-testid={ `customer_products__input-card-quantity-${id}` }
           />
