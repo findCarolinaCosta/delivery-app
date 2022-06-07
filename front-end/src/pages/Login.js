@@ -1,9 +1,10 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import { UserContext } from '../context/UserProvider';
 import { login } from '../api';
 import statusCodes from '../utils/statusCodes';
-import '../styles/Register.css';
+import '../styles/Common.css';
 
 function Login() {
   const { setUser } = useContext(UserContext);
@@ -33,15 +34,17 @@ function Login() {
     event.preventDefault();
     setIsLoading(true);
     const { email, password } = input;
-    const loginResult = await login(email, password);
+    const { status, data } = await login(email, password);
 
-    if (loginResult.status === statusCodes.OK) {
-      setUser(loginResult.data);
-      localStorage.setItem('user', JSON.stringify(loginResult.data));
-      navigate('/customer/products');
+    if (status === statusCodes.OK) {
+      setUser(data);
+      localStorage.setItem('user', JSON.stringify(data));
+      if (data.role === 'administrator') navigate('/admin/manage');
+      else navigate('/customer/products');
     } else {
-      setMessage(loginResult.data.message);
+      setMessage(data.message);
     }
+
     setIsLoading(false);
   };
 

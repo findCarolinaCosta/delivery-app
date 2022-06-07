@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import { ProductsContext } from '../context/ProductsProvider';
 import Header from '../components/Header';
 import ProductCard from '../components/ProductCard';

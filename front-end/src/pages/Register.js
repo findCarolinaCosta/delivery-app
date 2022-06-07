@@ -1,9 +1,10 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import { UserContext } from '../context/UserProvider';
 import { login, registerUser } from '../api';
 import statusCodes from '../utils/statusCodes';
-import '../styles/Register.css';
+import '../styles/Common.css';
 
 function Register() {
   const { setUser } = useContext(UserContext);
@@ -48,6 +49,7 @@ function Register() {
     } else {
       setMessage(registerResult.data.message);
     }
+
     setIsLoading(false);
   };
 
