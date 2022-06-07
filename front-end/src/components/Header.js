@@ -1,11 +1,13 @@
 import React, { useContext } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
+import { OrderContext } from '../context/OrderProvider';
 import { UserContext } from '../context/UserProvider';
 import '../styles/Header.css';
 
 function Header() {
   const { user } = useContext(UserContext);
   const navigate = useNavigate();
+  const { isSellerPage } = useContext(OrderContext);
 
   return (
     <header>
@@ -13,17 +15,22 @@ function Header() {
         <NavLink
           to="/customer/products"
           className="nav-link"
-          data-testid="customer_products__element-navbar-link-products"
+          data-testid={ isSellerPage
+            ? 'customer_products__element-navbar-link-orders'
+            : 'customer_products__element-navbar-link-products' }
         >
-          PRODUTOS
+          {isSellerPage === false ? 'PRODUTOS' : 'PEDIDOS'}
         </NavLink>
-        <NavLink
-          to="/customer/orders"
-          className="nav-link"
-          data-testid="customer_products__element-navbar-link-orders"
-        >
-          MEUS PEDIDOS
-        </NavLink>
+        {isSellerPage === false
+        && (
+          <NavLink
+            to="/customer/orders"
+            className="nav-link"
+            data-testid="customer_products__element-navbar-link-orders"
+          >
+            MEUS PEDIDOS
+          </NavLink>
+        )}
       </nav>
       <div>
         <h4 data-testid="customer_products__element-navbar-user-full-name">

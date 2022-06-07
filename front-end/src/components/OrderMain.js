@@ -9,8 +9,9 @@ import Header from './Header';
 const bgStatus = {
   pending: 'bg-[#d3c63c]', preparing: 'bg-[#87d53c]', delivered: 'bg-[#3bd5b0]' };
 
+// TODO layout do card quebrando
 function OrderMain({ setSellerPage }) {
-  const { orders, setOrders } = useContext(OrderContext);
+  const { orders, setOrders, isSellerPage } = useContext(OrderContext);
   const { user } = useContext(UserContext);
 
   useEffect(() => {
@@ -43,7 +44,9 @@ function OrderMain({ setSellerPage }) {
               >
                 <h3>Pedido</h3>
                 <p
-                  data-testid={ `customer_orders__element-order-id-${order.id}` }
+                  data-testid={ isSellerPage
+                    ? `seller_orders__element-order-id-${order.id}`
+                    : `customer_orders__element-order-id-${order.id}` }
                 >
                   {order.deliveryNumber}
                 </p>
@@ -56,25 +59,35 @@ function OrderMain({ setSellerPage }) {
                   ${order.status === 'ENTREGUE' && bgStatus.delivered}` }
               >
                 <h1
-                  data-testid={ `customer_orders__element-delivery-status-${order.id}` }
+                  data-testid={ isSellerPage
+                    ? `seller_orders__element-delivery-status-${order.id}`
+                    : `customer_orders__element-delivery-status-${order.id}` }
                 >
                   {order.status}
                 </h1>
               </div>
               <div className="flex flex-col gap-2 h-[105px] items-center justify-center">
-                <h2
-                  className="bg-[#f0fbf9] mt-auto mb-auto mr-6 ml-6 h-[40px] w-[140px]
+                <div>
+                  <h2
+                    className="bg-[#f0fbf9] mt-auto mb-auto mr-6 ml-6 h-[40px] w-[140px]
                   rounded-[10px] font-bold text-[22px] text-center p-1"
-                  data-testid={ `customer_orders__element-order-date-${order.id}` }
-                >
-                  {order.saleDate}
-                </h2>
-                <h2
-                  className="bg-[#f0fbf9] mb-auto h-[40px] w-[140px]
+                    data-testid={ isSellerPage
+                      ? `seller_orders__element-order-date-${order.id}`
+                      : `customer_orders__element-order-date-${order.id}` }
+                  >
+                    {order.saleDate}
+                  </h2>
+                  <h2
+                    className="bg-[#f0fbf9] mb-auto h-[40px] w-[140px]
                     rounded-[10px] font-bold text-[22px] text-center p-1"
-                >
-                  {order.totalPrice}
-                </h2>
+                    data-testid={ isSellerPage
+                    && `seller_orders__element-card-price-${order.id}` }
+                  >
+                    {order.totalPrice}
+                  </h2>
+                </div>
+                {isSellerPage
+                && <p>{`${order.deliveryAddress}, ${order.deliveryNumber}`}</p>}
               </div>
             </Link>
           </section>
