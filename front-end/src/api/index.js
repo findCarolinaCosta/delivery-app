@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const login = async (email, password) => {
+const login = async (email, password) => {
   try {
     const result = await axios.post('/login', {
       email,
@@ -12,7 +12,7 @@ export const login = async (email, password) => {
   }
 };
 
-export const registerUser = async (name, email, password) => {
+const registerUser = async (name, email, password) => {
   try {
     const result = await axios.post('/register', {
       name,
@@ -25,7 +25,7 @@ export const registerUser = async (name, email, password) => {
   }
 };
 
-export const fetchProducts = async () => {
+const fetchProducts = async () => {
   try {
     const result = await axios('/products');
     return result;
@@ -33,3 +33,5 @@ export const fetchProducts = async () => {
     return error.response;
   }
 };
+
+export { fetchProducts, login, registerUser };

@@ -6,7 +6,7 @@ import Header from '../components/Header';
 import ProductCard from '../components/ProductCard';
 import '../styles/Products.css';
 
-function CustomerProducts() {
+function Products() {
   const { products, totalPrice } = useContext(ProductsContext);
   const navigate = useNavigate();
 
@@ -43,4 +43,4 @@ function CustomerProducts() {
   );
 }
 
-export default CustomerProducts;
+export default Products;
