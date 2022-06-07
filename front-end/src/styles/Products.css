@@ -17,10 +17,10 @@
   padding: 20px;
   position: fixed;
   right: 80px;
-  transition: all 1.5s ease;
+  /* transition: all 1.5s ease; */
 }
 
-.checkout-button:disabled {
-  opacity: 50%;
+/* .checkout-button:disabled {
   bottom: -80px;
-}
+  opacity: 50%;
+} */

@@ -25,6 +25,54 @@ const registerUser = async (name, email, password) => {
   }
 };
 
+const createUser = async ({ name, email, password, role }, token) => {
+  try {
+    const result = await axios.post(
+      '/users',
+      {
+        name,
+        email,
+        password,
+        role,
+      },
+      {
+        headers: {
+          authorization: token,
+        },
+      },
+    );
+    return result;
+  } catch (error) {
+    return error.response;
+  }
+};
+
+const fetchUsers = async (token) => {
+  try {
+    const result = await axios.get('/users', {
+      headers: {
+        authorization: token,
+      },
+    });
+    return result;
+  } catch (error) {
+    return error.response;
+  }
+};
+
+const destroyUser = async (id, token) => {
+  try {
+    const result = await axios.delete(`/users/${id}`, {
+      headers: {
+        authorization: token,
+      },
+    });
+    return result;
+  } catch (error) {
+    return error.response;
+  }
+};
+
 const fetchProducts = async () => {
   try {
     const result = await axios('/products');
@@ -34,4 +82,11 @@ const fetchProducts = async () => {
   }
 };
 
-export { fetchProducts, login, registerUser };
+export {
+  createUser,
+  destroyUser,
+  fetchProducts,
+  fetchUsers,
+  login,
+  registerUser,
+};

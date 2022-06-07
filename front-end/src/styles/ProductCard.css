@@ -77,10 +77,10 @@
 
 /* Chrome, Safari, Edge, Opera */
 
-.product-control > input::-webkit-outer-spin-button,
+/* .product-control > input::-webkit-outer-spin-button,
 .product-control > input::-webkit-inner-spin-button {
   -webkit-appearance: none;
-}
+} */
 
 /* Firefox */
 

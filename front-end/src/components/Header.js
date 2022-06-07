@@ -8,8 +8,22 @@ function Header() {
   const { user } = useContext(UserContext);
   const navigate = useNavigate();
 
-  return (
-    <header>
+  const renderLinks = () => {
+    if (user.role === 'administrator') {
+      return (
+        <nav>
+          <NavLink
+            to="/admin/manage"
+            className="nav-link"
+            data-testid="customer_products__element-navbar-link-orders"
+          >
+            GERENCIAR USUÁRIOS
+          </NavLink>
+        </nav>
+      );
+    }
+
+    return (
       <nav>
         <NavLink
           to="/customer/products"
@@ -26,6 +40,12 @@ function Header() {
           MEUS PEDIDOS
         </NavLink>
       </nav>
+    );
+  };
+
+  return (
+    <header>
+      {renderLinks()}
       <div>
         <h4 data-testid="customer_products__element-navbar-user-full-name">
           {user.name}
