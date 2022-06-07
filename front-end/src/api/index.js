@@ -33,3 +33,7 @@ export const fetchProducts = async () => {
     return error.response;
   }
 };
+
+export const genericApiResquest = axios.create({
+  baseURL: 'http://localhost:3001',
+});

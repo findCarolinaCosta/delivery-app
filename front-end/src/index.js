@@ -2,6 +2,7 @@ import axios from "axios";
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
+import OrderProvider from "./context/OrderProvider";
 import ProductsProvider from "./context/ProductsProvider";
 import UserProvider from "./context/UserProvider";
 
@@ -11,9 +12,9 @@ ReactDOM.render(
   <React.StrictMode>
     <UserProvider>
       <ProductsProvider>
-        {/* <CustomerProvider> */}
-        <App />
-        {/* </CustomerProvider> */}
+        <OrderProvider>
+          <App />
+        </OrderProvider>
       </ProductsProvider>
     </UserProvider>
   </React.StrictMode>,
