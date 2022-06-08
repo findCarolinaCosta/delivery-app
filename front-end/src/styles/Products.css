@@ -19,7 +19,8 @@
   right: 80px;
 }
 
-/* transition: all 1.5s ease; (estava no checkout-button, baixei pro lint parar de reclamar) */
+/* transition: all 1.5s ease; 
+(estava no checkout-button, baixei pro lint parar de reclamar) */
 
 /* .checkout-button:disabled {
   bottom: -80px;
