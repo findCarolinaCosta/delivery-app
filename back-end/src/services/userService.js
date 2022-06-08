@@ -13,11 +13,15 @@ const verifyUser = async (name, email) => {
   }
 };
 
-const create = async (name, email, password) => {
+const create = async (name, email, password, role) => {
   await verifyUser(name, email);
   const hash = md5(password);
-  const result = await User.create({ name, email, password: hash, role: 'customer' });
+  const result = await User.create({ name, email, password: hash, role });
   return result;
 };
 
-module.exports = { create };
+const getAll = async () => User.findAll();
+
+const destroy = async (id) => User.destroy({ where: { id } });
+
+module.exports = { create, destroy, getAll };
