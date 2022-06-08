@@ -1,5 +1,4 @@
-// 'use strict';
-
+'use strict';
 module.exports = {
   up: async (queryInterface, _Sequelize) => {
     return queryInterface.bulkInsert("sales", [

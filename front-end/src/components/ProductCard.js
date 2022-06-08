@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+
 import { ProductsContext } from '../context/ProductsProvider';
 import '../styles/ProductCard.css';
 
@@ -19,7 +20,6 @@ function ProductCard({ id, name, price, urlImage }) {
   });
 
   useEffect(() => {
-    console.log(price.replace('.', ','));
     // Update cart in local storage
     const MINUS_ONE = -1;
     const updatedCart = JSON.parse(localStorage.getItem('cart')) || {
