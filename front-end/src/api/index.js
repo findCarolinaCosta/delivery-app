@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const login = async (email, password) => {
+const login = async (email, password) => {
   try {
     const result = await axios.post('/login', {
       email,
@@ -12,7 +12,7 @@ export const login = async (email, password) => {
   }
 };
 
-export const registerUser = async (name, email, password) => {
+const registerUser = async (name, email, password) => {
   try {
     const result = await axios.post('/register', {
       name,
@@ -25,7 +25,55 @@ export const registerUser = async (name, email, password) => {
   }
 };
 
-export const fetchProducts = async () => {
+const createUser = async ({ name, email, password, role }, token) => {
+  try {
+    const result = await axios.post(
+      '/users',
+      {
+        name,
+        email,
+        password,
+        role,
+      },
+      {
+        headers: {
+          authorization: token,
+        },
+      },
+    );
+    return result;
+  } catch (error) {
+    return error.response;
+  }
+};
+
+const fetchUsers = async (token) => {
+  try {
+    const result = await axios.get('/users', {
+      headers: {
+        authorization: token,
+      },
+    });
+    return result;
+  } catch (error) {
+    return error.response;
+  }
+};
+
+const destroyUser = async (id, token) => {
+  try {
+    const result = await axios.delete(`/users/${id}`, {
+      headers: {
+        authorization: token,
+      },
+    });
+    return result;
+  } catch (error) {
+    return error.response;
+  }
+};
+
+const fetchProducts = async () => {
   try {
     const result = await axios('/products');
     return result;
@@ -37,3 +85,12 @@ export const fetchProducts = async () => {
 export const genericApiResquest = axios.create({
   baseURL: 'http://localhost:3001',
 });
+
+export {
+  createUser,
+  destroyUser,
+  fetchProducts,
+  fetchUsers,
+  login,
+  registerUser,
+};

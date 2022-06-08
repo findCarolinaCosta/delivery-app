@@ -1,38 +1,20 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import { UserContext } from '../context/UserProvider';
+import useValidation from '../hooks/useValidation';
 import { login, registerUser } from '../api';
 import statusCodes from '../utils/statusCodes';
-import '../styles/Register.css';
+import InputGroup from '../components/InputGroup';
+import '../styles/Common.css';
 
 function Register() {
   const { setUser } = useContext(UserContext);
   const [input, setInput] = useState({ name: '', email: '', password: '' });
-  const [inputValidation, setInputValidation] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
-
-  const checkValidation = useCallback(() => {
-    const { name, email, password } = input;
-    const re = /\S+@\S+\.\S+/;
-    const MIN_NAME_LENGTH = 12;
-    const MIN_PASSWORD_LENGTH = 6;
-
-    if (
-      re.test(email)
-      && name.length >= MIN_NAME_LENGTH
-      && password.length >= MIN_PASSWORD_LENGTH
-    ) {
-      setInputValidation(true);
-    } else {
-      setInputValidation(false);
-    }
-  }, [input]);
-
-  const handleChange = ({ target: { name, value } }) => {
-    setInput((prevState) => ({ ...prevState, [name]: value }));
-  };
+  const validation = useValidation(input);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -48,58 +30,40 @@ function Register() {
     } else {
       setMessage(registerResult.data.message);
     }
+
     setIsLoading(false);
   };
 
-  useEffect(() => {
-    let control = true;
-    if (control) checkValidation();
-
-    return () => {
-      control = false;
-    };
-  }, [checkValidation]);
+  const handleChange = ({ target: { name, value } }) => {
+    setInput((prevState) => ({ ...prevState, [name]: value }));
+  };
 
   return (
-    <main className="register-page">
+    <main className="common-page">
       <h1>Cadastro</h1>
       <form onSubmit={ handleSubmit }>
-        <label htmlFor="name-input">
-          <span>Nome:</span>
-          <br />
-          <input
-            type="text"
-            id="name-input"
-            name="name"
-            onChange={ handleChange }
-            data-testid="common_register__input-name"
-          />
-        </label>
-        <label htmlFor="email-input">
-          <span>E-mail:</span>
-          <br />
-          <input
-            type="text"
-            id="email-input"
-            name="email"
-            onChange={ handleChange }
-            data-testid="common_register__input-email"
-          />
-        </label>
-        <label htmlFor="password-input">
-          <span>Senha:</span>
-          <br />
-          <input
-            type="password"
-            id="password-input"
-            name="password"
-            onChange={ handleChange }
-            data-testid="common_register__input-password"
-          />
-        </label>
+        <InputGroup
+          label="Nome:"
+          name="name"
+          onChange={ handleChange }
+          dataTestid="common_register__input-name"
+        />
+        <InputGroup
+          label="E-mail:"
+          name="email"
+          onChange={ handleChange }
+          dataTestid="common_register__input-email"
+        />
+        <InputGroup
+          label="Senha:"
+          type="password"
+          name="password"
+          onChange={ handleChange }
+          dataTestid="common_register__input-password"
+        />
         <button
           type="submit"
-          disabled={ !inputValidation }
+          disabled={ !validation }
           data-testid="common_register__button-register"
         >
           {isLoading ? <div className="loader" /> : <span>Cadastrar</span>}

@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+
 import { fetchProducts } from '../api';
 
 export const ProductsContext = createContext();

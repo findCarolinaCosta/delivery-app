@@ -1,9 +1,11 @@
 const md5 = require('md5');
+
 const { User } = require('../database/models');
 const { createToken } = require('../utils');
 
 const login = async (email, password) => {
   const result = await User.findOne({ where: { email } });
+  
   if (!result) {
     throw new Error('Usuário não encontrado');
   }

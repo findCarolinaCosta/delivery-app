@@ -5,7 +5,6 @@ header {
   display: flex;
   height: 60px;
   justify-content: space-between;
-  position: fixed;
   width: 100%;
   z-index: 10;
 }
@@ -21,13 +20,13 @@ header h4 {
   padding: 0 40px;
 }
 
-.logout-button {
+header .logout-button {
   background-color: #056cf9;
   font-size: 1.1rem;
   width: 200px;
 }
 
-.nav-link {
+header .nav-link {
   color: white;
   display: inline-block;
   font-weight: 700;
@@ -36,6 +35,6 @@ header h4 {
   text-decoration: none;
 }
 
-.nav-link.active {
+header .nav-link.active {
   background-color: #2fc18c;
 }
