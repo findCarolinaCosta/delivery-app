@@ -15,8 +15,6 @@ export default function AddressClient() {
 
   return (
     <div className="adressClient">
-      {' '}
-      {/*       // essa linha mostra 3 campos */}
       <h1>Detalhes e Endereço para Entrega</h1>
       <form onSubmit={ handleSubimit }>
         <div className="AdressInline">
@@ -47,7 +45,7 @@ export default function AddressClient() {
         </div>
         <div className="ButtonFinishOrder">
           <button
-            type="button"
+            type="submit"
             data-testid="customer_checkout__button-submit-order"
             // onClick={ FinalizarPedido }
           >
