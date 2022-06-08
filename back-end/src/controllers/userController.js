@@ -15,6 +15,15 @@ const create = async (req, res, next) => {
   }
 };
 
+const getSellers = async (_req, res, next) => {
+  try {
+    const result = await service.getSellers();
+    return res.status(200).json(result);
+  } catch (error) {
+    next(error);
+  }
+};
+
 const getAll = async (req, res, next) => {
   try {
     verifyAdm(req.session);
@@ -36,4 +45,4 @@ const destroy = async (req, res, next) => {
   }
 };
 
-module.exports = { create, getAll, destroy };
+module.exports = { create, getAll, destroy, getSellers };

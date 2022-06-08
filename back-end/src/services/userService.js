@@ -13,6 +13,8 @@ const verifyUser = async (name, email) => {
   }
 };
 
+const getSellers = async () => User.findAll({ where: { role: 'seller' } });
+
 const create = async (name, email, password, role) => {
   await verifyUser(name, email);
   const hash = md5(password);
@@ -24,4 +26,4 @@ const getAll = async () => User.findAll();
 
 const destroy = async (id) => User.destroy({ where: { id } });
 
-module.exports = { create, destroy, getAll };
+module.exports = { create, destroy, getAll, getSellers };
