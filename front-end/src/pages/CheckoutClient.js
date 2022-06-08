@@ -7,20 +7,18 @@ import AddressClient from '../components/AddressClient';
 
 function CheckoutClient() {
   const localCart = JSON.parse(localStorage.getItem('cart'));
-  const { products } = useContext(ProductsContext);
   const { totalPrice } = localCart;
 
   const renderTable = () => localCart.items.map((product, index) => {
-    const { id, name, price, quantity } = product;
+    const { name, price, quantity } = product;
     return (
       <OrderDetailsMain
-        key={ id }
+        key={ index }
         index={ index }
         name={ name }
         price={ price }
         quantity={ quantity }
         subtotal={ (price * quantity).toFixed(2) }
-        totalPrice={ totalPrice }
       />
     );
   });
@@ -33,7 +31,7 @@ function CheckoutClient() {
         <ul className="product-card-list">{renderTable()}</ul>
         <TotalPrice />
         <h1> Detalhes do Pedido e Endereço para Entrega </h1>
-        {/* <AddressClient /> */}
+        <AddressClient />
       </div>
     </div>
   );

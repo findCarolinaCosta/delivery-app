@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
+
 
 export default function AddressClient() {
   const [address, setAddress] = useState('');
   const [number, setNumber] = useState('');
+
+  function handleSubimit(e) {
+    e.preventDefault();
+    let newSale = {
+      address,
+      number,
+    }
+  }
 
   return (
     <div className="adressClient">
@@ -23,7 +32,7 @@ export default function AddressClient() {
               data-testid="customer_checkout__input-adress"
               type="text"
               id="Address"
-              onChange={(e) => setAddress(e.target.value)}
+              onChange={ (e) => setAddress(e.target.value) }
             />
           </label>
           <label htmlFor="numberAddress">
@@ -32,7 +41,7 @@ export default function AddressClient() {
               data-testid="customer_checkout__input-adressNumber"
               type="text"
               id="number"
-              onChange={(e) => setNumber(e.target.value)}
+              onChange={ (e) => setNumber(e.target.value) }
             />
           </label>
         </div>
@@ -40,7 +49,7 @@ export default function AddressClient() {
           <button
             type="button"
             data-testid="customer_checkout__button-submit-order"
-            onClick={ FinalizarPedido }
+            // onClick={ FinalizarPedido }
           >
             FINALIZAR PEDIDO
           </button>
