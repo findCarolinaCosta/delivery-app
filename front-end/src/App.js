@@ -22,15 +22,15 @@ function App() {
         <Route exact path="/customer/orders" element={ <CustomerOrder /> } />
         <Route path="/admin/manage" element={ <Admin /> } />
         <Route path="*" element={ <NotFound /> } />
-        <Route exact
+        <Route
+          exact
           path="/customer/orders/:saleId"
-          element={ <CustomerOrderDetail /> } 
-         />   
-        
+          element={ <CustomerOrderDetail /> }
+        />
+
       </Routes>
     </BrowserRouter>
   );
 }
-
 
 export default App;

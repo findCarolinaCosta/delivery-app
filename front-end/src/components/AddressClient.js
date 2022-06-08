@@ -1,17 +1,24 @@
-import React, { useState } from 'react';
-
+import React, { useState, useEffect } from 'react';
+import { genericApiResquest } from '../api';
 
 export default function AddressClient() {
-  const [address, setAddress] = useState('');
-  const [number, setNumber] = useState('');
+  const [setAddress] = useState('');
+  const [setNumber] = useState('');
+  const [sellers, setSellers] = useState([]);
 
   function handleSubimit(e) {
     e.preventDefault();
-    let newSale = {
-      address,
-      number,
-    }
+    // let newSale = {
+    //   address,
+    //   number,
+    // }
   }
+
+  useEffect(() => {
+    genericApiResquest.get('/sellers').then((response) => {
+      setSellers(response.data);
+    });
+  }, []);
 
   return (
     <div className="adressClient">
@@ -21,7 +28,7 @@ export default function AddressClient() {
           <label htmlFor="responsavel">
             P. Vendedora Responsável
             <select data-testid="customer_checkout__select-seller">
-              {/* <option value="teste-fulana">Fulana Pereira</option> */}
+              { sellers.map(({ name }, index) => <option key={ index }>{name}</option>) }
             </select>
           </label>
           <label htmlFor="AddressClient">

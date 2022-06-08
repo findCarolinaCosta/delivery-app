@@ -1,13 +1,13 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import Header from '../components/Header';
 import TotalPrice from '../components/TotalPrice';
-import { ProductsContext } from '../context/ProductsProvider';
+// import { ProductsContext } from '../context/ProductsProvider';
 import OrderDetailsMain from '../components/OrderDetailsMain';
 import AddressClient from '../components/AddressClient';
 
 function CheckoutClient() {
   const localCart = JSON.parse(localStorage.getItem('cart'));
-  const { totalPrice } = localCart;
+  // const { totalPrice } = localCart;
 
   const renderTable = () => localCart.items.map((product, index) => {
     const { name, price, quantity } = product;

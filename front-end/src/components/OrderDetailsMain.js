@@ -6,7 +6,7 @@ const status = {
   ENTREGUE: 'MARCAR COMO ENTREGUE',
 };
 
-export default function OrderDetailsMain({index, name, quantity, price, subtotal}) {
+export default function OrderDetailsMain({ index, name, quantity, price, subtotal }) {
   const location = useLocation();
   return (
     <div>
@@ -15,7 +15,7 @@ export default function OrderDetailsMain({index, name, quantity, price, subtotal
       <div>
         <table>
           {location.pathname === '/customer/checkout' ? null : (
-             <thead>
+            <thead>
               <tr>
                 <th>{`Pedido ${'0003'}`}</th>
                 <th>{`P. Vend: ${'Fulana Pereira'}`}</th>
@@ -28,23 +28,22 @@ export default function OrderDetailsMain({index, name, quantity, price, subtotal
           {index === 0 && (
             <thead>
               <tr>
-            <th>Item</th>
-            <th>Descrição</th>
-            <th>Quantidade</th>
-            <th>Valor unitário</th>
-            <th>Sub-total</th>
-            </tr>
-            </thead>)
-          }
+                <th>Item</th>
+                <th>Descrição</th>
+                <th>Quantidade</th>
+                <th>Valor unitário</th>
+                <th>Sub-total</th>
+              </tr>
+            </thead>)}
           <tbody>
-          <tr>
-            <td>{index + 1}</td>
-            <td>{name}</td>
-            <td>{quantity}</td>
-            <td>{price}</td>
-            <td>{subtotal}</td>
-            <td>Remover</td>
-          </tr>
+            <tr>
+              <td>{index + 1}</td>
+              <td>{name}</td>
+              <td>{quantity}</td>
+              <td>{price}</td>
+              <td>{subtotal}</td>
+              <td>Remover</td>
+            </tr>
           </tbody>
         </table>
       </div>

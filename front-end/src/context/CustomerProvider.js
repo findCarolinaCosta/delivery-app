@@ -1,12 +1,11 @@
-import PropTypes from 'prop-types';
+/* import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 
 export default function CustomerProvider({ children }) {
   // const [customers, setCustomers] = useState([]);
   const [productInCart, setProductInCart] = useState([]);
   const contextCustomer = { productInCart, setProductInCart };
-  const [adress, setAddress] = useState([]);
-  
+
   return (
     <CustomerProvider.Provider value={ { contextCustomer } }>
       {children}
@@ -14,3 +13,4 @@ export default function CustomerProvider({ children }) {
   );
 }
 CustomerProvider.propTypes = { children: PropTypes.node.isRequired };
+ */
