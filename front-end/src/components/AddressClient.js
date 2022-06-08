@@ -1,14 +1,17 @@
 import React from 'react';
 
 export default function AddressClient() {
+  const [address, setAddress] = useState('');
+  const [number, setNumber] = useState('');
+
   return (
     <div className="adressClient">
       {' '}
       {/*       // essa linha mostra 3 campos */}
+      <h1>Detalhes e Endereço para Entrega</h1>
       <form onSubmit={ handleSubimit }>
         <div className="AdressInline">
           <label htmlFor="responsavel">
-            {' '}
             P. Vendedora Responsável
             <select data-testid="customer_checkout__select-seller">
               {/* <option value="teste-fulana">Fulana Pereira</option> */}
@@ -20,14 +23,16 @@ export default function AddressClient() {
               data-testid="customer_checkout__input-adress"
               type="text"
               id="Address"
+              onChange={(e) => setAddress(e.target.value)}
             />
           </label>
           <label htmlFor="numberAddress">
-            Endereço:
+            Número:
             <input
               data-testid="customer_checkout__input-adressNumber"
               type="text"
               id="number"
+              onChange={(e) => setNumber(e.target.value)}
             />
           </label>
         </div>

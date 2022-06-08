@@ -1,21 +1,26 @@
 import React, { useContext } from 'react';
 import Header from '../components/Header';
-import ProductCard from '../components/ProductCard';
+import TotalPrice from '../components/TotalPrice';
 import { ProductsContext } from '../context/ProductsProvider';
+import OrderDetailsMain from '../components/OrderDetailsMain';
+import AddressClient from '../components/AddressClient';
 
 function CheckoutClient() {
   const localCart = JSON.parse(localStorage.getItem('cart'));
-  const { products, totalPrice } = useContext(ProductsContext);
+  const { products } = useContext(ProductsContext);
+  const { totalPrice } = localCart;
 
-  const renderCards = () => localCart.items.map((product) => {
-    const { id, name, price, urlImage } = product;
+  const renderTable = () => localCart.items.map((product, index) => {
+    const { id, name, price, quantity } = product;
     return (
-      <ProductCard
+      <OrderDetailsMain
         key={ id }
-        id={ id }
+        index={ index }
         name={ name }
         price={ price }
-        urlImage={ urlImage }
+        quantity={ quantity }
+        subtotal={ (price * quantity).toFixed(2) }
+        totalPrice={ totalPrice }
       />
     );
   });
@@ -24,8 +29,9 @@ function CheckoutClient() {
     <div>
       <Header />
       <div>
-        <h1> Finalizar Pedidos</h1>
-        <ul className="product-card-list">{renderCards()}</ul>
+        <h1>Finalizar Pedido</h1>
+        <ul className="product-card-list">{renderTable()}</ul>
+        <TotalPrice />
         <h1> Detalhes do Pedido e Endereço para Entrega </h1>
         {/* <AddressClient /> */}
       </div>

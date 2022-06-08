@@ -3,9 +3,10 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import CustomerOrderDetail from './pages/CustomerOrderDetail';
 import Login from './pages/Login';
 import NotFound from './pages/NotFound';
-import OrderClients from './pages/OrdersClients';
+import CustomerOrder from './pages/CustomerOrder';
 import Products from './pages/Products';
 import Register from './pages/Register';
+import CheckoutClient from './pages/CheckoutClient';
 import './styles/App.css';
 
 function App() {
@@ -13,11 +14,11 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route exact path="/" element={ <Navigate to="/login" /> } />
-        <Route path="/customer" element={ <CheckoutClient /> } />
+        <Route path="/customer/checkout" element={ <CheckoutClient /> } />
         <Route path="/login" element={ <Login /> } />
         <Route path="/register" element={ <Register /> } />
         <Route path="/customer/products" element={ <Products /> } />
-        <Route exact path="/customer/orders" element={ <OrderClients /> } />
+        <Route exact path="/customer/orders" element={ <CustomerOrder /> } />
         <Route
           exact
           path="/customer/orders/:saleId"
