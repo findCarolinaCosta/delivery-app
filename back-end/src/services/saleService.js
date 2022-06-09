@@ -1,7 +1,6 @@
 const { Sale, SalesProduct } = require('../database/models');
 
 const create = async (body) => {
-  console.log('body', body);
   const { 
     totalPrice,
     deliveryAddress, // sale
