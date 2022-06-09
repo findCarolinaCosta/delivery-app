@@ -14,6 +14,7 @@ const verifyUser = async (name, email) => {
 };
 
 const getSellers = async () => User.findAll({ where: { role: 'seller' } });
+const getById = async (id) => User.findOne({ where: { id } });
 
 const create = async (name, email, password, role) => {
   await verifyUser(name, email);
@@ -26,4 +27,4 @@ const getAll = async () => User.findAll();
 
 const destroy = async (id) => User.destroy({ where: { id } });
 
-module.exports = { create, destroy, getAll, getSellers };
+module.exports = { create, destroy, getAll, getSellers, getById };
