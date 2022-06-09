@@ -3,14 +3,15 @@ const { Sale, SalesProduct } = require('../database/models');
 const create = async (body) => {
   const { 
     totalPrice,
-    deliveryAddress, // sale
-    deliveryNumber, //sale
-    sellerId, //sale
-    userId, // sale
+    deliveryAddress,
+    deliveryNumber,
+    sellerId,
+    userId,
+    products,
   } = body;
 
   const newSale = await Sale.create({
-    userId: 1,
+    userId,
     sellerId,
     totalPrice,
     deliveryAddress,
@@ -18,13 +19,13 @@ const create = async (body) => {
     status: 'Pendente',
   });
 
-  console.log('newSale', newSale)
+  console.log('newSale - teste', newSale)
 
-  // const { id: saleId } = newSale;
+  const { id: saleId } = newSale;
   
-  // const newSale = await SalePro.create({ saleId, productId, quantity})
-
-  // return newSale
+  await Promise.all(products.map(async ({ id: productId, quantity }) => {
+    await SalesProduct.create({ productId, saleId, quantity });
+  }));
 };
 
 module.exports = { create };
