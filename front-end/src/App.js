@@ -19,7 +19,7 @@ function App() {
         <Route path="/register" element={ <Register /> } />
         <Route path="/customer/products" element={ <Products /> } />
         <Route exact path="/customer/orders" element={ <CustomerOrder /> } />
-        <Route exact path= "/customer/checkout"element={ <CheckoutClient /> } />
+        <Route exact path= "/customer/checkout" element={ <CheckoutClient /> } />
         <Route path="/admin/manage" element={ <Admin /> } />
         <Route path="*" element={ <NotFound /> } />
         <Route

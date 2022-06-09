@@ -32,7 +32,7 @@ function ProductCard({ id, name, price, urlImage }) {
       if (quantity !== 0) updatedCart.items[index].quantity = quantity;
       else updatedCart.items.splice(index, 1);
     } else if (quantity !== 0) {
-      updatedCart.items.push({ name, price, quantity });
+      updatedCart.items.push({ id, name, price, quantity });
     }
 
     const total = updatedCart.items.reduce(

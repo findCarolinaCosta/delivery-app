@@ -8,10 +8,13 @@ export default function AddressClient() {
 
   function handleSubimit(e) {
     e.preventDefault();
+      sellers[0].id
     // let newSale = {
-    //   address,
-    //   number,
+    //  deliveryAddress, 
+    // deliveryNumber,
     // }
+
+    //post Sale
   }
 
   useEffect(() => {
