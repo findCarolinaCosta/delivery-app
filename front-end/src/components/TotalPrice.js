@@ -6,6 +6,7 @@ export default function TotalPrice() {
     <button
       type="button"
       className="checkout-button"
+      onClick={ (e) => e.preventDefault() }
     >
       {`R$ ${Number(totalPrice).toFixed(2)}`}
     </button>

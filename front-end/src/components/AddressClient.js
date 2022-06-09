@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { genericApiResquest } from '../api';
+import OrderProvider from '../context/OrderProvider';
 
 export default function AddressClient() {
   const [setAddress] = useState('');
@@ -8,13 +9,17 @@ export default function AddressClient() {
 
   function handleSubimit(e) {
     e.preventDefault();
-      sellers[0].id
-    // let newSale = {
-    //  deliveryAddress, 
-    // deliveryNumber,
-    // }
 
-    //post Sale
+    const userId = localStorage.getItem('userId')
+
+    let newSale = {
+      userId,
+      sellerId: sellers[0].id,
+      deliveryAddress: address,
+      deliveryNumber: number,
+      status: 'Pendente', }
+
+    genericApiResquest.post('/customer/checkout', newSale)
   }
 
   useEffect(() => {
@@ -57,7 +62,7 @@ export default function AddressClient() {
           <button
             type="submit"
             data-testid="customer_checkout__button-submit-order"
-            // onClick={ FinalizarPedido }
+            onClick={ () => handleSubmit() }
           >
             FINALIZAR PEDIDO
           </button>

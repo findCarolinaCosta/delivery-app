@@ -4,6 +4,6 @@ const saleController = require('../controllers/saleController');
 
 const routeSaleClient = express.Router();
 
-routeSaleClient.post('/sales', saleController.create);
+routeSaleClient.post('/customer/checkout', saleController.create);
 
 module.exports = routeSaleClient;
