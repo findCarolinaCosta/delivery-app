@@ -1,7 +1,5 @@
-const { Sale } = require('../database/models');
+const { SalesProduct, Product, Sale } = require('../database/models');
 const serializeData = require('./helpers/serializeData');
-
-const getAll = () => Sale.findAll();
 
 const getByClientId = async (userId) => {
   const orders = await Sale.findAll({ where: { userId } });
@@ -11,7 +9,19 @@ const getByClientId = async (userId) => {
   );
 };
 
+const getBySaleId = async (saleId) => SalesProduct.findAll({
+    where: { saleId },
+    include: [
+      { 
+        model: Sale, 
+        as: 'sale',
+        attributes: { include: ['seller_id', 'total_price', 'sale_date', 'status'] }, 
+      },
+      { model: Product, as: 'product', attributes: { attributes: ['name', 'price'] } },
+    ],
+  });
+
 module.exports = {
-  getAll,
   getByClientId,
+  getBySaleId,
 };

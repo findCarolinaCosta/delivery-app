@@ -2,8 +2,14 @@ module.exports = (sequelize, DataTypes) => {
   const SalesProduct = sequelize.define(
     "SalesProduct",
     {
-      saleId: DataTypes.INTEGER,
-      productId: DataTypes.INTEGER,
+      saleId: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+      },
+      productId: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+      },
       quantity: DataTypes.INTEGER,
     },
     {
@@ -12,6 +18,18 @@ module.exports = (sequelize, DataTypes) => {
       timestamps: false,
     }
   );
+
+  SalesProduct.associate = (models) => {
+    SalesProduct.belongsTo(models.Product, {
+      foreingKey: 'product_id',
+      as: 'product',
+    });
+
+    SalesProduct.belongsTo(models.Sale, {
+      foreingKey: 'sale_id',
+      as: 'sale',
+    });
+  };
 
   return SalesProduct;
 };
