@@ -73,7 +73,7 @@ export default function AddressClient() {
           <label htmlFor="numberAddress">
             Número:
             <input
-              data-testid="customer_checkout__input-adressNumber"
+              data-testid="customer_checkout__input-addressNumber"
               type="text"
               id="number"
               onChange={ (e) => setNumber(e.target.value) }

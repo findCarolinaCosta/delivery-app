@@ -12,8 +12,6 @@ function ProductCard({ id, name, price, urlImage }) {
 
   const addItem = () => setQuantity(quantity + 1);
 
-  const removeAll = () => setQuantity(0); //pra ser ativada qdo clicado no botao remover
-
   const handleChange = (e) => setQuantity(e.target.value);
 
   const removeItem = () => setQuantity((prevState) => {
