@@ -5,9 +5,9 @@ import { ProductsContext } from '../context/ProductsProvider';
 import '../styles/ProductCard.css';
 
 function ProductCard({ id, name, price, urlImage }) {
-  const localCart = JSON.parse(localStorage.getItem('cart'));
-  const localItem = localCart?.items.find((item) => item.name === name);
-  const { setTotalPrice } = useContext(ProductsContext);
+  // const localCart = JSON.parse(localStorage.getItem('cart'));
+  const { cart, setCart } = useContext(ProductsContext);
+  const localItem = cart.items.find((item) => item.name === name);
   const [quantity, setQuantity] = useState(localItem ? localItem.quantity : 0);
 
   const addItem = () => setQuantity(quantity + 1);
@@ -22,10 +22,7 @@ function ProductCard({ id, name, price, urlImage }) {
   useEffect(() => {
     // Update cart in local storage
     const MINUS_ONE = -1;
-    const updatedCart = JSON.parse(localStorage.getItem('cart')) || {
-      items: [],
-      totalPrice: 0,
-    };
+    const updatedCart = { ...cart };
     const index = updatedCart.items.findIndex((item) => item.name === name);
 
     if (index !== MINUS_ONE) {
@@ -41,9 +38,9 @@ function ProductCard({ id, name, price, urlImage }) {
     );
 
     updatedCart.totalPrice = total;
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
-    setTotalPrice(total);
-  }, [name, price, quantity, setTotalPrice]);
+    setCart(updatedCart);
+    // setTotalPrice(total);
+  }, [quantity]);
 
   return (
     <li className="product-card">

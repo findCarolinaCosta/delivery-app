@@ -1,42 +1,64 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { genericApiResquest } from '../api';
-import OrderProvider from '../context/OrderProvider';
+import { ProductsContext } from '../context/ProductsProvider';
 
 export default function AddressClient() {
-  const [setAddress] = useState('');
-  const [setNumber] = useState('');
+  const [address, setAddress] = useState('');
+  const [number, setNumber] = useState('');
+  const [sellerId, setSellerId] = useState('');
   const [sellers, setSellers] = useState([]);
+  const { cart } = useContext(ProductsContext);
+  const navigate = useNavigate();
 
-  function handleSubimit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
 
-    const userId = localStorage.getItem('userId')
+    const user = JSON.parse(localStorage.getItem('user'));
 
-    let newSale = {
-      userId,
-      sellerId: sellers[0].id,
+    const newSale = {
+      userId: user.id,
+      sellerId,
       deliveryAddress: address,
       deliveryNumber: number,
-      status: 'Pendente', }
+      status: 'Pendente',
+      products: cart.items,
+      totalPrice: cart.totalPrice,
+    };
 
-    genericApiResquest.post('/customer/checkout', newSale)
+    console.log('newSale', newSale);
+
+    const { data: saleId } = await genericApiResquest.post('/customer/checkout', newSale);
+
+    navigate(`/customer/orders/${saleId}`);
   }
 
   useEffect(() => {
     genericApiResquest.get('/sellers').then((response) => {
       setSellers(response.data);
+      setSellerId(response.data[0].id);
     });
   }, []);
 
   return (
     <div className="adressClient">
       <h1>Detalhes e Endereço para Entrega</h1>
-      <form onSubmit={ handleSubimit }>
+      <form>
         <div className="AdressInline">
           <label htmlFor="responsavel">
             P. Vendedora Responsável
-            <select data-testid="customer_checkout__select-seller">
-              { sellers.map(({ name }, index) => <option key={ index }>{name}</option>) }
+            <select
+              data-testid="customer_checkout__select-seller"
+              onChange={ ({ target }) => setSellerId(target.value) }
+            >
+              { sellers.map(({ id, name }, index) => (
+                <option
+                  key={ index }
+                  value={ id }
+                >
+                  {name}
+                </option>
+              )) }
             </select>
           </label>
           <label htmlFor="AddressClient">
@@ -62,7 +84,7 @@ export default function AddressClient() {
           <button
             type="submit"
             data-testid="customer_checkout__button-submit-order"
-            onClick={ () => handleSubmit() }
+            onClick={ (e) => handleSubmit(e) }
           >
             FINALIZAR PEDIDO
           </button>

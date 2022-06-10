@@ -39,7 +39,11 @@ export default function OrderDetailsMain({ index, name, quantity, price, subtota
             <td>{quantity}</td>
             <td>{price}</td>
             <td>{subtotal}</td>
-            <td>Remover</td>
+            {location.pathname === '/customer/checkout' && (
+              <td>
+                <button type="button">Remover</button>
+              </td>
+            )}
           </tr>
         </tbody>
       </table>
