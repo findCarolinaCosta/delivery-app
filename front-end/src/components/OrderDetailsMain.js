@@ -25,7 +25,7 @@ export default function OrderDetailsMain({ index, name, quantity, price, subtota
         {index === 0 && (
           <thead>
             <tr>
-              <th>Item</th>
+              <th >Item</th>
               <th>Descrição</th>
               <th>Quantidade</th>
               <th>Valor unitário</th>
@@ -34,14 +34,28 @@ export default function OrderDetailsMain({ index, name, quantity, price, subtota
           </thead>)}
         <tbody>
           <tr>
-            <td>{index + 1}</td>
-            <td>{name}</td>
-            <td>{quantity}</td>
-            <td>{price}</td>
-            <td>{subtotal}</td>
+            <td data-testid={
+              `customer_checkout__element-order-table-item-number-${index}`
+              } >{index + 1}</td>
+            <td data-testid={
+              `customer_checkout__element-order-table-name-${index}`
+              }>{name}</td>
+            <td data-testid={
+              `customer_checkout__element-order-table-quantity-${index}`
+              }>{quantity}</td>
+            <td data-testid={
+              `customer_checkout__element-order-table-unit-price-${index}`
+              }>{price.replace('.', ',')}</td>
+            <td data-testid={
+              `customer_checkout__element-order-table-sub-total-${index}`
+              }>{subtotal.replace('.', ',')}</td>
             {location.pathname === '/customer/checkout' && (
               <td>
-                <button type="button">Remover</button>
+                <button 
+                data-testid={
+                  `customer_checkout__element-order-table-remove-${index}`
+                  }
+                type="button">Remover</button>
               </td>
             )}
           </tr>

@@ -5,10 +5,11 @@ export default function TotalPrice() {
   return (
     <button
       type="button"
+      data-testid="customer_checkout__element-order-total-price"
       className="checkout-button"
       onClick={ (e) => e.preventDefault() }
     >
-      {`R$ ${Number(totalPrice).toFixed(2)}`}
+      {`R$ ${Number(totalPrice).toFixed(2).replace('.', ',')}`}
     </button>
   );
 }
