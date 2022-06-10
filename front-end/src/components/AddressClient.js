@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { genericApiResquest, createSale } from '../api';
-import { ProductsContext } from '../context/ProductsProvider'
+import { ProductsContext } from '../context/ProductsProvider';
 
 export default function AddressClient() {
   const [address, setAddress] = useState('');
@@ -27,14 +27,9 @@ export default function AddressClient() {
     };
     const { token } = user;
 
-    console.log('newSale', newSale);
+    // console.log('newSale', newSale);
 
-    const { data: saleId } = await createSale.post('/customer/checkout',
- /*      { headers: {
-        authorization: token,
-      } }, */
-      newSale);
-
+    const { data: saleId } = await createSale(newSale, token);
     navigate(`/customer/orders/${saleId}`);
   }
 

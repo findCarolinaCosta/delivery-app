@@ -84,15 +84,15 @@ const fetchProducts = async () => {
 
 const createSale = async (body, token) => {
   try {
-    const result = await axios.post(`/customer/checkout`, {
+    const result = await axios.post('/customer/checkout', {
       headers: {
         authorization: token,
       },
-      body,});
-      return result;
-    } catch (error) {
-      return error.response;
-      }
+      body });
+    return result;
+  } catch (error) {
+    return error.response;
+  }
 };
 
 export const genericApiResquest = axios.create({
@@ -108,4 +108,3 @@ export {
   registerUser,
   createSale,
 };
-

@@ -13,7 +13,7 @@ function CheckoutClient() {
   const removeAllItem = (id, subtotal) => {
     const newCart = cart.items.filter((item) => item.id !== id);
     setCart({ items: newCart, totalPrice: cart.totalPrice - subtotal });
-    location.reload();
+    window.location.reload();
   };
 
   const renderTable = () => localCart.items.map((product, index) => {

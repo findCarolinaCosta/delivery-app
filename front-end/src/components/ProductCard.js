@@ -40,7 +40,7 @@ function ProductCard({ id, name, price, urlImage }) {
     updatedCart.totalPrice = total;
     setCart(updatedCart);
     // setTotalPrice(total);
-  }, [quantity]);
+  }, [cart, id, name, price, quantity, setCart]);
 
   return (
     <li className="product-card">
