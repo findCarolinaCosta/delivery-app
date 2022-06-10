@@ -19,13 +19,13 @@ const create = async (body) => {
     status: 'Pendente',
   });
 
-  console.log('newSale - teste', newSale)
-
   const { id: saleId } = newSale;
   
   await Promise.all(products.map(async ({ id: productId, quantity }) => {
     await SalesProduct.create({ productId, saleId, quantity });
   }));
+
+  return saleId;
 };
 
 module.exports = { create };
