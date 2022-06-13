@@ -82,6 +82,19 @@ const fetchProducts = async () => {
   }
 };
 
+const createSale = async (body, token) => {
+  try {
+    const result = await axios.post('/customer/checkout', body, {
+      headers: {
+        authorization: token,
+      },
+    });
+    return result;
+  } catch (error) {
+    return error.response;
+  }
+};
+
 export const genericApiResquest = axios.create({
   baseURL: 'http://localhost:3001',
 });
@@ -93,4 +106,5 @@ export {
   fetchUsers,
   login,
   registerUser,
+  createSale,
 };

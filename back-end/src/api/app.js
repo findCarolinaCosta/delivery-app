@@ -6,6 +6,7 @@ const {
   registerRoute,
   productsRoute,
   userRoute,
+  saleRoute,
 } = require('../routes');
 
 const errorMiddleware = require('../middlewares/errorMiddleware');
@@ -20,6 +21,7 @@ app.use(loginRoute);
 app.use(registerRoute);
 app.use(productsRoute);
 app.use(userRoute);
+app.use(saleRoute);
 
 app.use(errorMiddleware);
 
