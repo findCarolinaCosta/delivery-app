@@ -27,9 +27,10 @@ export default function AddressClient() {
     };
     const { token } = user;
 
-    // console.log('newSale', newSale);
-
+    
     const { data: saleId } = await createSale(newSale, token);
+    console.log('newSale', newSale);
+    console.log(saleId);
     navigate(`/customer/orders/${saleId}`);
   }
 
