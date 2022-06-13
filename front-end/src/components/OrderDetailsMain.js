@@ -2,10 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { genericApiResquest } from '../api';
 
-const status = {
-  ENTREGUE: 'MARCAR COMO ENTREGUE',
-};
-
 export default function OrderDetailsMain() {
   const { pathname } = useLocation();
   const [sellerName, setSellerName] = useState('');

@@ -15,11 +15,11 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route exact path="/" element={ <Navigate to="/login" /> } />
-        <Route path="/customer/checkout" element={ <CheckoutClient /> } />
         <Route path="/login" element={ <Login /> } />
         <Route path="/register" element={ <Register /> } />
         <Route path="/customer/products" element={ <Products /> } />
         <Route exact path="/customer/orders" element={ <CustomerOrder /> } />
+        <Route exact path="/customer/checkout" element={ <CheckoutClient /> } />
         <Route path="/admin/manage" element={ <Admin /> } />
         <Route path="*" element={ <NotFound /> } />
         <Route
@@ -27,7 +27,6 @@ function App() {
           path="/customer/orders/:saleId"
           element={ <CustomerOrderDetail /> }
         />
-
       </Routes>
     </BrowserRouter>
   );
