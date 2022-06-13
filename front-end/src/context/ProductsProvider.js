@@ -9,8 +9,7 @@ function ProductsProvider({ children }) {
   const localCart = JSON.parse(localStorage.getItem('cart'));
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState(localCart || { items: [], totalPrice: 0 });
-  // tem que fazer um estado separado pro total price
-  // está dando erro de loop infinito pq nunca para de recarregar a pagina de produtos
+
   const [totalPrice, setTotalPrice] = useState(
     localCart ? localCart.totalPrice : 0,
   );

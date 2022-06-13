@@ -1,8 +1,8 @@
-import axios from "axios";
+import axios from 'axios';
 
 const login = async (email, password) => {
   try {
-    const result = await axios.post("/login", {
+    const result = await axios.post('/login', {
       email,
       password,
     });
@@ -14,7 +14,7 @@ const login = async (email, password) => {
 
 const registerUser = async (name, email, password) => {
   try {
-    const result = await axios.post("/register", {
+    const result = await axios.post('/register', {
       name,
       email,
       password,
@@ -28,7 +28,7 @@ const registerUser = async (name, email, password) => {
 const createUser = async ({ name, email, password, role }, token) => {
   try {
     const result = await axios.post(
-      "/users",
+      '/users',
       {
         name,
         email,
@@ -39,7 +39,7 @@ const createUser = async ({ name, email, password, role }, token) => {
         headers: {
           authorization: token,
         },
-      }
+      },
     );
     return result;
   } catch (error) {
@@ -49,7 +49,7 @@ const createUser = async ({ name, email, password, role }, token) => {
 
 const fetchUsers = async (token) => {
   try {
-    const result = await axios.get("/users", {
+    const result = await axios.get('/users', {
       headers: {
         authorization: token,
       },
@@ -75,7 +75,7 @@ const destroyUser = async (id, token) => {
 
 const fetchProducts = async () => {
   try {
-    const result = await axios("/products");
+    const result = await axios('/products');
     return result;
   } catch (error) {
     return error.response;
@@ -84,7 +84,7 @@ const fetchProducts = async () => {
 
 const createSale = async (body, token) => {
   try {
-    const result = await axios.post("/customer/checkout", body, {
+    const result = await axios.post('/customer/checkout', body, {
       headers: {
         authorization: token,
       },
@@ -96,7 +96,7 @@ const createSale = async (body, token) => {
 };
 
 export const genericApiResquest = axios.create({
-  baseURL: "http://localhost:3001",
+  baseURL: 'http://localhost:3001',
 });
 
 export {

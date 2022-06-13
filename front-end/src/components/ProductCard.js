@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { ProductsContext } from '../context/ProductsProvider';
@@ -10,26 +10,41 @@ function ProductCard({ id, name, price, urlImage }) {
   const localItem = cart.items.find((item) => item.name === name);
   const [quantity, setQuantity] = useState(localItem ? localItem.quantity : 0);
 
-  const addItem = () => setQuantity(quantity + 1);
-
-  const handleChange = (e) => setQuantity(e.target.value);
-
-  const removeItem = () => setQuantity((prevState) => {
-    if (prevState > 0) return prevState - 1;
-    return 0;
-  });
-
-  useEffect(() => {
-    // Update cart in local storage
+  const addItem = () => {
     const MINUS_ONE = -1;
     const updatedCart = { ...cart };
     const index = updatedCart.items.findIndex((item) => item.name === name);
 
     if (index !== MINUS_ONE) {
-      if (quantity !== 0) updatedCart.items[index].quantity = quantity;
+      console.log('1', quantity);
+      updatedCart.items[index].quantity = quantity + 1;
+    } else {
+      updatedCart.items.push({ id, name, price, quantity: quantity + 1 });
+    }
+
+    const total = updatedCart.items.reduce(
+      (acc, curr) => acc + curr.price * curr.quantity,
+      0,
+    );
+
+    console.log('2', quantity);
+    console.log(updatedCart);
+
+    updatedCart.totalPrice = total;
+    setCart(updatedCart);
+    setQuantity(quantity + 1);
+  };
+
+  const handleChange = (e) => setQuantity(e.target.value);
+
+  const removeItem = () => {
+    const MINUS_ONE = -1;
+    const updatedCart = { ...cart };
+    const index = updatedCart.items.findIndex((item) => item.name === name);
+
+    if (index !== MINUS_ONE) {
+      if (quantity > 1) updatedCart.items[index].quantity = quantity - 1;
       else updatedCart.items.splice(index, 1);
-    } else if (quantity !== 0) {
-      updatedCart.items.push({ id, name, price, quantity });
     }
 
     const total = updatedCart.items.reduce(
@@ -39,8 +54,9 @@ function ProductCard({ id, name, price, urlImage }) {
 
     updatedCart.totalPrice = total;
     setCart(updatedCart);
-    // setTotalPrice(total);
-  }, [quantity]);
+
+    setQuantity(quantity === 0 ? 0 : quantity - 1);
+  };
 
   return (
     <li className="product-card">
