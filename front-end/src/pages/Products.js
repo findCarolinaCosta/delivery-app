@@ -1,12 +1,13 @@
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import { ProductsContext } from '../context/ProductsProvider';
 import Header from '../components/Header';
 import ProductCard from '../components/ProductCard';
 import '../styles/Products.css';
 
-function CustomerProducts() {
-  const { products, totalPrice } = useContext(ProductsContext);
+function Products() {
+  const { cart, products } = useContext(ProductsContext);
   const navigate = useNavigate();
 
   const renderCards = () => products.map((product) => {
@@ -30,16 +31,16 @@ function CustomerProducts() {
         type="button"
         className="checkout-button"
         onClick={ () => navigate('/customer/checkout') }
-        disabled={ totalPrice === 0 }
+        disabled={ cart.totalPrice === 0 }
         data-testid="customer_products__button-cart"
       >
         Ver carrinho: R$
         <span data-testid="customer_products__checkout-bottom-value">
-          {totalPrice.toFixed(2).replace('.', ',')}
+          {cart.totalPrice.toFixed(2).replace('.', ',')}
         </span>
       </button>
     </main>
   );
 }
 
-export default CustomerProducts;
+export default Products;

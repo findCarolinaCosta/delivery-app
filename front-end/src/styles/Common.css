@@ -1,11 +1,11 @@
-.register-page {
+.common-page {
   align-items: center;
   display: flex;
   flex-direction: column;
-  padding-top: 200px;
+  padding-top: 100px;
 }
 
-.register-page > form {
+.common-page > form {
   background-color: var(--light-gray);
   box-shadow: var(--box-shadow);
   display: flex;
@@ -14,47 +14,26 @@
   padding: 20px;
 }
 
-.register-page input {
+.common-page input {
   font-family: inherit;
   height: 40px;
-  margin-bottom: 10px;
+  margin-bottom: 25px;
   padding: 0 10px;
   width: 300px;
 }
 
-.register-page button {
+.common-page button {
   background-color: var(--green);
   border-radius: 5px;
   color: white;
   font-size: 1.1rem;
   font-weight: 700;
   height: 40px;
-  margin-top: 30px;
+  margin-top: 25px;
   text-transform: uppercase;
 }
 
-.register-page button:disabled {
+.common-page button:disabled {
   cursor: initial;
   opacity: 50%;
-}
-
-.register-page .loader {
-  animation: loader 0.8s linear infinite;
-  border: 4px solid;
-  border-color: white transparent;
-  border-radius: 50%;
-  height: 25px;
-  margin: 0 auto;
-  width: 25px;
-}
-
-@keyframes loader {
-
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
 }

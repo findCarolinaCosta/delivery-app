@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+
 import { fetchProducts } from '../api';
 
 export const ProductsContext = createContext();
@@ -7,6 +8,8 @@ export const ProductsContext = createContext();
 function ProductsProvider({ children }) {
   const localCart = JSON.parse(localStorage.getItem('cart'));
   const [products, setProducts] = useState([]);
+  const [cart, setCart] = useState(localCart || { items: [], totalPrice: 0 });
+
   const [totalPrice, setTotalPrice] = useState(
     localCart ? localCart.totalPrice : 0,
   );
@@ -17,12 +20,18 @@ function ProductsProvider({ children }) {
   };
 
   useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }, [cart]);
+
+  useEffect(() => {
     getProducts();
   }, []);
 
   const shared = {
     products,
     setProducts,
+    cart,
+    setCart,
     totalPrice,
     setTotalPrice,
   };

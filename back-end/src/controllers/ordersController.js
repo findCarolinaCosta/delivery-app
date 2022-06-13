@@ -1,4 +1,4 @@
-const OrderClientService = require('../services/OrderClientService');
+const OrderClientService = require('../services/ordersService');
 
 const getByClientId = async (req, res) => {
   const { userId } = req.params;
