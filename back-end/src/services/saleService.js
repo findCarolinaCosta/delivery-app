@@ -16,7 +16,8 @@ const create = async ({
     deliveryNumber,
     status: 'Pendente',
   });
-  await Promise.all(products.map(({ id: pId, qtd }) => SalesProduct.create({ pId, saleId, qtd })));
+  await Promise.all(products.map(({ id: productId, quantity }) => 
+    SalesProduct.create({ productId, saleId, quantity })));
   return saleId;
 };
 
