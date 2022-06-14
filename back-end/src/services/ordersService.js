@@ -1,5 +1,5 @@
 const { SalesProduct, Product, Sale } = require('../database/models');
-const serializeData = require('./helpers/serializeData');
+const { serializeData, serializeSale } = require('./helpers/serializeData');
 
 const getByClientId = async (userId) => {
   const orders = await Sale.findAll({ where: { userId } });
@@ -9,7 +9,8 @@ const getByClientId = async (userId) => {
   );
 };
 
-const getBySaleId = async (saleId) => SalesProduct.findAll({
+const getBySaleId = async (saleId) => {
+  const result = JSON.stringify(await SalesProduct.findAll({
     where: { saleId },
     include: [
       { 
@@ -19,7 +20,12 @@ const getBySaleId = async (saleId) => SalesProduct.findAll({
       },
       { model: Product, as: 'product', attributes: { attributes: ['name', 'price'] } },
     ],
-  });
+  }));
+
+  return Promise.all(
+    JSON.parse(result).map(serializeSale),
+  );
+};
 
 module.exports = {
   getByClientId,
