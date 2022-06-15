@@ -19,6 +19,7 @@ const serializeSale = async (obj) => {
     ...object,
     sale: {
       ...object.sale,
+      // data não vem no horário de brasilia, passa nos testes quando está no mesmo dia
       saleDate: `${Number(dd)}/${mm}/${yy}`,
     },
   };

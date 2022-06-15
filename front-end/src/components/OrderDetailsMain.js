@@ -11,6 +11,7 @@ export default function OrderDetailsMain() {
   const verifyPath = pathname === pathCheckout;
   const { cart, setCart } = useContext(ProductsContext);
   const [isDelivered, setIsDelivered] = useState(false);
+  const verifyPathDetail = pathname.includes('/customer/orders');
 
   const removeAllItem = (id, subtotal) => {
     const newCart = cart.items.filter((item) => item.id !== id);
@@ -53,24 +54,39 @@ export default function OrderDetailsMain() {
           <thead>
             <tr>
               <th
-                data-testid="customer_order_details__element-order-details-label-order-id"
+                data-testid={
+                  verifyPathDetail
+                  && 'customer_order_details__element-order-details-label-order-id'
+                }
               >
                 {`Pedido ${orders[0].sale.id}`}
               </th>
               <th
-                data-testid="customer_order_details__element-order-details-label-seller-name"
+                data-testid={
+                  verifyPathDetail
+                   && 'customer_order_details__element-order-details-label-seller-name'
+                }
               >
                 {`P. Vend: ${sellerName}`}
 
               </th>
               <th
-                data-testid="customer_order_details__element-order-details-label-order-date"
+                data-testid={
+                  verifyPathDetail
+                   && 'customer_order_details__element-order-details-label-order-date'
+                }
               >
+                {/*
+                data não vem no horário de brasilia, passa nos testes quando está no mesmo dia
+                */}
                 {orders[0].sale.saleDate}
 
               </th>
               <th
-                data-testid="customer_order_details__element-order-details-label-delivery-status"
+                data-testid={
+                  verifyPathDetail
+                  && 'customer_order_details__element-order-details-label-delivery-status'
+                }
               >
                 {orders[0].sale.status}
 
@@ -141,7 +157,7 @@ export default function OrderDetailsMain() {
                 data-testid={
                   verifyPath
                     ? `customer_checkout__element-order-table-sub-total-${index}`
-                    : 'customer_order_details__element-order-total-price'
+                    : `customer_order_details__element-order-total-price-${index}`
                 }
               >
                 {verifyPath
