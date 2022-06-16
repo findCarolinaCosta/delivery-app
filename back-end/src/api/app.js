@@ -10,6 +10,7 @@ const {
 } = require('../routes');
 
 const errorMiddleware = require('../middlewares/errorMiddleware');
+const routeOrderClient = require('../routes/ordersRoute');
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.use(loginRoute);
 app.use(registerRoute);
 app.use(productsRoute);
 app.use(userRoute);
+app.use(routeOrderClient);
 app.use(saleRoute);
 
 app.use(errorMiddleware);

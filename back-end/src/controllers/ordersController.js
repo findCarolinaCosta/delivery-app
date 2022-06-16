@@ -11,6 +11,18 @@ const getByClientId = async (req, res) => {
  }
 };
 
+const getBySaleId = async (req, res) => {
+  const { saleId } = req.params;
+ try {
+   const order = await OrderClientService.getBySaleId(saleId);
+   return res.status(200).json(order);
+ } catch (error) {
+   console.log(error);
+   return res.status(500).json({ message: 'Internal error server' });
+ }
+};
+
 module.exports = {
   getByClientId,
+  getBySaleId,
 };
