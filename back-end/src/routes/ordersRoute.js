@@ -1,8 +1,10 @@
 const express = require('express');
-const { getByClientId } = require('../controllers/ordersController');
+const { getByClientId, getBySellerId } = require('../controllers/ordersController');
 
-const routeOrderClient = express.Router();
+const OrderRoute = express.Router();
 
-routeOrderClient.get('/orders/clients/:userId', getByClientId);
+OrderRoute.get('/orders/clients/:userId', getByClientId);
 
-module.exports = routeOrderClient;
+OrderRoute.get('/orders/seller/:sellerId', getBySellerId);
+
+module.exports = OrderRoute;
