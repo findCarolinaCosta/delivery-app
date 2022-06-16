@@ -96,7 +96,7 @@ const createSale = async (body, token) => {
 };
 
 export const genericApiResquest = axios.create({
-  baseURL: 'http://localhost:3030',
+  baseURL: 'http://localhost:3001',
 });
 
 export {

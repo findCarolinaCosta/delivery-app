@@ -6,7 +6,7 @@ import OrderProvider from "./context/OrderProvider";
 import ProductsProvider from "./context/ProductsProvider";
 import UserProvider from "./context/UserProvider";
 
-axios.defaults.baseURL = "http://localhost:3030/";
+axios.defaults.baseURL = "http://localhost:3001/";
 
 ReactDOM.render(
   <React.StrictMode>
