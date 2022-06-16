@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
-import { OrderContext } from '../context/OrderProvider';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 
 import { UserContext } from '../context/UserProvider';
 import '../styles/Header.css';
@@ -8,7 +7,8 @@ import '../styles/Header.css';
 function Header() {
   const { user } = useContext(UserContext);
   const navigate = useNavigate();
-  const { isSellerPage } = useContext(OrderContext);
+  const { pathname } = useLocation();
+  const verifyPathSeller = pathname === '/seller/orders';
 
   const renderLinks = () => {
     if (user.role === 'administrator') {
@@ -30,13 +30,13 @@ function Header() {
         <NavLink
           to="/customer/products"
           className="nav-link"
-          data-testid={ isSellerPage
+          data-testid={ verifyPathSeller
             ? 'customer_products__element-navbar-link-orders'
             : 'customer_products__element-navbar-link-products' }
         >
-          {isSellerPage === false ? 'PRODUTOS' : 'PEDIDOS'}
+          {verifyPathSeller ? 'PEDIDOS' : 'PRODUTOS'}
         </NavLink>
-        {isSellerPage === false
+        {!verifyPathSeller
         && (
           <NavLink
             to="/customer/orders"

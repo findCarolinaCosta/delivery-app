@@ -1,6 +1,12 @@
 import React from 'react';
-import OrderDetailsMain from '../components/OrderDetailsMain';
+import Header from '../components/Header';
+// import OrderDetailsMain from '../components/OrderDetailsMain';
 
 export default function CustomerOrderDetail() {
-  return <OrderDetailsMain />;
+  return (
+    <>
+      <Header />
+      {/* <OrderDetailsMain /> */}
+    </>
+  );
 }

@@ -26,6 +26,7 @@ function Login() {
       setUser(data);
       localStorage.setItem('user', JSON.stringify(data));
       if (data.role === 'administrator') navigate('/admin/manage');
+      if (data.role === 'seller') navigate('/seller/orders');
       else navigate('/customer/products');
     } else {
       setMessage(data.message);

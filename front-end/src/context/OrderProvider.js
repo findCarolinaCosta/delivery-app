@@ -5,11 +5,8 @@ export const OrderContext = createContext();
 
 function OrderProvider({ children }) {
   const [orders, setOrders] = useState([]);
-  const [isSellerPage, setIsSellerPage] = useState(false);
 
   const shared = {
-    isSellerPage,
-    setIsSellerPage,
     orders,
     setOrders,
   };
