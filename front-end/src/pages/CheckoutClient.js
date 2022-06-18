@@ -10,7 +10,7 @@ function CheckoutClient() {
       <Header />
       <div>
         <h1>Finalizar Pedido</h1>
-        <ul className="product-card-list">
+        <ul>
           <OrderDetailsMain />
         </ul>
         <TotalPrice />
