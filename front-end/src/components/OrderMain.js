@@ -45,7 +45,7 @@ function OrderMain({ setSellerPage }) {
                 <p
                   data-testid={ `customer_orders__element-order-id-${order.id}` }
                 >
-                  {order.deliveryNumber}
+                  {order.id}
                 </p>
               </div>
               <div
@@ -58,7 +58,9 @@ function OrderMain({ setSellerPage }) {
                 <h1
                   data-testid={ `customer_orders__element-delivery-status-${order.id}` }
                 >
-                  {order.status}
+                  {order.status === 'PENDENTE' && 'Pendente'}
+                  {order.status === 'PREPARANDO' && 'Preparando'}
+                  {order.status === 'ENTREGUE' && 'Entregue'}
                 </h1>
               </div>
               <div className="flex flex-col gap-2 h-[105px] items-center justify-center">
@@ -72,6 +74,7 @@ function OrderMain({ setSellerPage }) {
                 <h2
                   className="bg-[#f0fbf9] mb-auto h-[40px] w-[140px]
                     rounded-[10px] font-bold text-[22px] text-center p-1"
+                  data-testId={ `customer_orders__element-card-price-${order.id}` }
                 >
                   {order.totalPrice}
                 </h2>

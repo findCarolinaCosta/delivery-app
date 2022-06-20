@@ -1,6 +1,5 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
 import { UserContext } from '../context/UserProvider';
 import useValidation from '../hooks/useValidation';
 import { login } from '../api';
@@ -15,6 +14,11 @@ function Login() {
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
   const validation = useValidation(input);
+
+  useEffect(() => {
+    const user = localStorage.getItem('user');
+    return user && navigate('/customer/products');
+  }, [navigate]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
