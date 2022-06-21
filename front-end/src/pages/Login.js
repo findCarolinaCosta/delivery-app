@@ -1,12 +1,11 @@
 import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import { login } from '../api';
+import InputGroup from '../components/InputGroup';
 import { UserContext } from '../context/UserProvider';
 import useValidation from '../hooks/useValidation';
-import { login } from '../api';
-import statusCodes from '../utils/statusCodes';
-import InputGroup from '../components/InputGroup';
 import '../styles/Common.css';
+import statusCodes from '../utils/statusCodes';
 
 function Login() {
   const { setUser } = useContext(UserContext);
@@ -25,8 +24,9 @@ function Login() {
     if (status === statusCodes.OK) {
       setUser(data);
       localStorage.setItem('user', JSON.stringify(data));
-      if (data.role === 'administrator') navigate('/admin/manage');
-      else navigate('/customer/products');
+      if (data.role === 'administrator') return navigate('/admin/manage');
+      if (data.role === 'seller') return navigate('/seller/orders');
+      if (data.role === 'customer') return navigate('/customer/products');
     } else {
       setMessage(data.message);
     }
