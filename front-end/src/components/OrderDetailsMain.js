@@ -214,7 +214,8 @@ export default function OrderDetailsMain() {
                           (order.price * order.quantity).toFixed(2));
                       } }
                       data-testid={
-                        `customer_checkout__element-order-table-remove-${index}`
+                        verifyPath
+                        && `customer_checkout__element-order-table-remove-${index}`
                       }
                       type="button"
                     >
