@@ -90,19 +90,20 @@ function OrderMain() {
                   <h2
                     className="bg-[#f0fbf9] mb-auto h-[40px] w-[140px]
                     rounded-[10px] font-bold text-[22px] text-center p-1"
-                    data-testid={ verifyPathSeller
-                    && `seller_orders__element-card-price-${order.id}` }
+                    data-testId={ verifyPathSeller
+                      ? `seller_orders__element-card-price-${order.id}`
+                      : `customer_orders__element-card-price-${order.id}` }
                   >
                     {order.totalPrice}
                   </h2>
-                </div>
-                {verifyPathSeller
+                  {verifyPathSeller
                 && (
                   <p data-testid={ `seller_orders__element-card-address-${order.id}` }>
                     {`${order.deliveryAddress}, ${order.deliveryNumber}`}
 
                   </p>
                 )}
+                </div>
               </div>
             </Link>
           </section>
