@@ -18,8 +18,10 @@ html {
 }
 
 body {
-  background-image: linear-gradient(to bottom, var(--light-gray), var(--light-gray2));
-  font-family: Poppins , sans-serif;
+
+  /* background-image: linear-gradient(to bottom, var(--light-gray),
+  var(--light-gray2)); */
+  font-family: Roboto , Poppins , sans-serif;
   min-height: 100vh;
 }
 

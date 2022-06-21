@@ -1,0 +1,4 @@
+.grid-cols-custom {
+  grid-template-columns: 60px 7fr 0.724fr 0.724fr 0.724fr;
+}
+

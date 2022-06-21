@@ -24,7 +24,7 @@ const getBySaleId = async (saleId) => {
 
   return Promise.all(
     JSON.parse(result).map(serializeSale),
-); 
+);
 };
 
 const getBySellerId = async (sellerId) => {

@@ -13,9 +13,11 @@ export default function TotalPrice() {
       data-testid={ verifyPath
         ? 'customer_checkout__element-order-total-price'
         : 'customer_order_details__element-order-total-price' }
-      className="checkout-button"
+      className="bg-[#036b52] text-white text-[36px] m-auto
+      rounded-[10px] pl-5 pr-5 cursor-pointer leading-[50px] min-w-max
+      mt-5 mb-2 font-bold relative left-[80%]"
     >
-      {`R$ ${Number(totalPrice).toFixed(2).replace('.', ',')}`}
+      {`Total: R$ ${Number(totalPrice).toFixed(2).replace('.', ',')}`}
     </button>
   );
 }
