@@ -1,12 +1,14 @@
 import React from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
-
+import CustomerOrderDetail from './pages/CustomerOrderDetail';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import Products from './pages/Products';
-import OrderClients from './pages/OrdersClients';
 import Admin from './pages/Admin';
 import NotFound from './pages/NotFound';
+import CustomerOrder from './pages/CustomerOrder';
+import Products from './pages/Products';
+import SellerOrder from './pages/SellerOrder';
+import CheckoutClient from './pages/CheckoutClient';
 import './styles/App.css';
 
 function App() {
@@ -17,9 +19,16 @@ function App() {
         <Route path="/login" element={ <Login /> } />
         <Route path="/register" element={ <Register /> } />
         <Route path="/customer/products" element={ <Products /> } />
-        <Route path="/customer/orders" element={ <OrderClients /> } />
+        <Route exact path="/customer/orders" element={ <CustomerOrder /> } />
+        <Route exact path="/seller/orders" element={ <SellerOrder /> } />
+        <Route exact path="/customer/checkout" element={ <CheckoutClient /> } />
         <Route path="/admin/manage" element={ <Admin /> } />
         <Route path="*" element={ <NotFound /> } />
+        <Route
+          exact
+          path="/customer/orders/:saleId"
+          element={ <CustomerOrderDetail /> }
+        />
       </Routes>
     </BrowserRouter>
   );
