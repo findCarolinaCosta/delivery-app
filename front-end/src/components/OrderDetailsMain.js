@@ -213,7 +213,9 @@ export default function OrderDetailsMain() {
                         removeAllItem(order.id,
                           (order.price * order.quantity).toFixed(2));
                       } }
-                      data-testid={`customer_checkout__element-order-table-remove-${index}`}
+                      data-testid={
+                        `customer_checkout__element-order-table-remove-${index}`
+                      }
                       type="button"
                     >
                       Remover
