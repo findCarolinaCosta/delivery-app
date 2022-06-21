@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 
 import { UserContext } from '../context/UserProvider';
 import '../styles/Header.css';
@@ -7,6 +7,8 @@ import '../styles/Header.css';
 function Header() {
   const { user } = useContext(UserContext);
   const navigate = useNavigate();
+  const { pathname } = useLocation();
+  const verifyPathSeller = pathname === '/seller/orders';
 
   const renderLinks = () => {
     if (user.role === 'administrator') {
@@ -28,17 +30,22 @@ function Header() {
         <NavLink
           to="/customer/products"
           className="nav-link"
-          data-testid="customer_products__element-navbar-link-products"
+          data-testid={ verifyPathSeller
+            ? 'customer_products__element-navbar-link-orders'
+            : 'customer_products__element-navbar-link-products' }
         >
-          PRODUTOS
+          {verifyPathSeller ? 'PEDIDOS' : 'PRODUTOS'}
         </NavLink>
-        <NavLink
-          to="/customer/orders"
-          className="nav-link"
-          data-testid="customer_products__element-navbar-link-orders"
-        >
-          MEUS PEDIDOS
-        </NavLink>
+        {!verifyPathSeller
+        && (
+          <NavLink
+            to="/customer/orders"
+            className="nav-link"
+            data-testid="customer_products__element-navbar-link-orders"
+          >
+            MEUS PEDIDOS
+          </NavLink>
+        )}
       </nav>
     );
   };

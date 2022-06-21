@@ -1,6 +1,5 @@
-import PropTypes from 'prop-types';
 import React, { useContext, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { genericApiResquest } from '../api';
 import { OrderContext } from '../context/OrderProvider';
 import { UserContext } from '../context/UserProvider';
@@ -9,19 +8,29 @@ import Header from './Header';
 const bgStatus = {
   pending: 'bg-[#d3c63c]', preparing: 'bg-[#87d53c]', delivered: 'bg-[#3bd5b0]' };
 
-function OrderMain({ setSellerPage }) {
+// TODO layout do card quebrando
+function OrderMain() {
   const { orders, setOrders } = useContext(OrderContext);
   const { user } = useContext(UserContext);
+  const { pathname } = useLocation();
+  const verifyPathSeller = pathname === '/seller/orders';
+  const length = 4;
 
   useEffect(() => {
-    setSellerPage();
-  }, [setSellerPage]);
+    if (pathname === '/customer/orders') {
+      genericApiResquest.get(`orders/clients/${user.id}`).then((response) => {
+        setOrders(response.data);
+      });
+    }
+  }, [pathname, setOrders, user.id]);
 
   useEffect(() => {
-    genericApiResquest.get(`orders/clients/${user.id}`).then((response) => {
-      setOrders(response.data);
-    });
-  }, [setOrders, user.id]);
+    if (verifyPathSeller) {
+      genericApiResquest.get(`/orders/seller/${user.id}`).then((response) => {
+        setOrders(response.data);
+      });
+    }
+  }, [pathname, setOrders, user.id, verifyPathSeller]);
 
   return (
     <div className="bg-[#fff] h-screen">
@@ -30,7 +39,7 @@ function OrderMain({ setSellerPage }) {
         {orders.map((order, index) => (
           <section key={ order.id }>
             <Link
-              to={ `/customer/orders/${order.id}` }
+              to={ `${pathname}/${order.id}` }
               className={ `mt-48 flex flex-row gap-5 
                   items-center ${index % 2 === 0 ? 'ml-40' : 'mr-40'} 
                   border-[#bec2c1] border-solid border-[1px] bg-[#eaf1ef] w-[600px] 
@@ -43,9 +52,11 @@ function OrderMain({ setSellerPage }) {
               >
                 <h3>Pedido</h3>
                 <p
-                  data-testid={ `customer_orders__element-order-id-${order.id}` }
+                  data-testid={ verifyPathSeller
+                    ? `seller_orders__element-order-id-${order.id}`
+                    : `customer_orders__element-order-id-${order.id}` }
                 >
-                  {order.id}
+                  {String(order.id).padStart(length, '0')}
                 </p>
               </div>
               <div
@@ -56,7 +67,9 @@ function OrderMain({ setSellerPage }) {
                   ${order.status === 'ENTREGUE' && bgStatus.delivered}` }
               >
                 <h1
-                  data-testid={ `customer_orders__element-delivery-status-${order.id}` }
+                  data-testid={ verifyPathSeller
+                    ? `seller_orders__element-delivery-status-${order.id}`
+                    : `customer_orders__element-delivery-status-${order.id}` }
                 >
                   {order.status === 'PENDENTE' && 'Pendente'}
                   {order.status === 'PREPARANDO' && 'Preparando'}
@@ -64,20 +77,33 @@ function OrderMain({ setSellerPage }) {
                 </h1>
               </div>
               <div className="flex flex-col gap-2 h-[105px] items-center justify-center">
-                <h2
-                  className="bg-[#f0fbf9] mt-auto mb-auto mr-6 ml-6 h-[40px] w-[140px]
+                <div>
+                  <h2
+                    className="bg-[#f0fbf9] mt-auto mb-auto mr-6 ml-6 h-[40px] w-[140px]
                   rounded-[10px] font-bold text-[22px] text-center p-1"
-                  data-testid={ `customer_orders__element-order-date-${order.id}` }
-                >
-                  {order.saleDate}
-                </h2>
-                <h2
-                  className="bg-[#f0fbf9] mb-auto h-[40px] w-[140px]
+                    data-testid={ verifyPathSeller
+                      ? `seller_orders__element-order-date-${order.id}`
+                      : `customer_orders__element-order-date-${order.id}` }
+                  >
+                    {order.saleDate}
+                  </h2>
+                  <h2
+                    className="bg-[#f0fbf9] mb-auto h-[40px] w-[140px]
                     rounded-[10px] font-bold text-[22px] text-center p-1"
-                  data-testId={ `customer_orders__element-card-price-${order.id}` }
-                >
-                  {order.totalPrice}
-                </h2>
+                    data-testId={ verifyPathSeller
+                      ? `seller_orders__element-card-price-${order.id}`
+                      : `customer_orders__element-card-price-${order.id}` }
+                  >
+                    {order.totalPrice}
+                  </h2>
+                  {verifyPathSeller
+                && (
+                  <p data-testid={ `seller_orders__element-card-address-${order.id}` }>
+                    {`${order.deliveryAddress}, ${order.deliveryNumber}`}
+
+                  </p>
+                )}
+                </div>
               </div>
             </Link>
           </section>
@@ -86,14 +112,5 @@ function OrderMain({ setSellerPage }) {
     </div>
   );
 }
-
-OrderMain.defaultProps = {
-  // valor default caso não esteja renderizando em uma página do vendedor, solução pro lint
-  setSellerPage: () => {},
-};
-
-OrderMain.propTypes = {
-  setSellerPage: PropTypes.func,
-};
 
 export default OrderMain;

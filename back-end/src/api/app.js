@@ -9,6 +9,7 @@ const {
   saleRoute,
 } = require('../routes');
 
+const OrderRoute = require('../routes/ordersRoute');
 const errorMiddleware = require('../middlewares/errorMiddleware');
 const routeOrderClient = require('../routes/ordersRoute');
 
@@ -24,6 +25,7 @@ app.use(productsRoute);
 app.use(userRoute);
 app.use(routeOrderClient);
 app.use(saleRoute);
+app.use(OrderRoute);
 
 app.use(errorMiddleware);
 
